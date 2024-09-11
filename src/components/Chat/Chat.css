@@ -1,43 +1,47 @@
-#chat-container {
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Maior que o z-index do componente de chat */
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px; /* Ajuste o tamanho do modal conforme necessário */
+    z-index: 1001; /* Maior que o overlay */
+  }
+  
+  .chat-container {
+    position: relative;
     width: 100%;
     max-width: 600px;
     margin: 20px auto;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-}
-#messages {
-    flex: 1;
-    padding: 10px;
-    height: 300px;
-    overflow-y: auto;
-    border-bottom: 1px solid #ddd;
-    background-color: #f9f9f9;
-}
-.message {
-    padding: 10px;
-    margin-bottom: 5px;
-    background: #eee;
-    border-radius: 5px;
-}
-#input-container {
-    display: flex;
-}
-#message-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-top: none;
-}
-#send-button {
-    padding: 10px;
-    background: #0073e6;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-#send-button:hover {
-    background: #005bb5;
-}
+  }
+  
+  .card.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+
+.chat-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    height: 50%; 
+  }
+  
+  .card {
+    height: 100%; 
+  }
+  
