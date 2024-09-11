@@ -20,10 +20,23 @@ const Chat = () => {
 
     ws.current.onmessage = (event) => {
       // Handle incoming messages
-      const message = event.data;
-      console.log(`Received message from server: ${message}`);
-      setMessages((prevMessages) => [...prevMessages, `Server: ${message}`]);
+      try {
+        // Tenta verificar se a mensagem é JSON
+        const isJson = event.data.startsWith('{') && event.data.endsWith('}');
+        if (isJson) {
+          const messageObj = JSON.parse(event.data);
+          const formattedMessage = `${messageObj.user.name} (${messageObj.user.ip}): ${messageObj.message}`;
+          console.log(`Received message from server: ${formattedMessage}`);
+          setMessages((prevMessages) => [...prevMessages, `${formattedMessage}`]);
+        } else {
+          console.log(`Received non-JSON message: ${event.data}`);
+          setMessages((prevMessages) => [...prevMessages, `Server: ${event.data}`]);
+        }
+      } catch (error) {
+        console.error('Erro ao processar a mensagem recebida:', error);
+      }
     };
+    
 
     ws.current.onclose = () => {
       console.log('WebSocket connection closed');
@@ -45,18 +58,31 @@ const Chat = () => {
   };
 
   const sendMessage = () => {
-    if (input.trim()) {
-      const message = `${user?.name || 'Desconhecido'}: ${input}`;
-      console.log(message);
-      ws.current.send(input); // Send the message through WebSocket
-      setInput('');
+    if (input.trim() && user) {
+      const messageObj = {
+        user: {
+          name: user.name,
+          ip: user.ip, // Substitua por lógica para obter o IP do usuário, se disponível
+        },
+        message: input,
+      };
+  
+      const messageJson = JSON.stringify(messageObj);
+      console.log(messageJson);
+      ws.current.send(messageJson); // Send the JSON message through WebSocket
+      setInput(''); // Clear input field after sending
+    } else {
+      console.error('User information is missing or input is empty');
     }
   };
 
   return (
     <div className="chat-container">
       <UserModal isOpen={isModalOpen} onClose={handleUserSubmit} />
-      <div className={`card card-fixed ${isModalOpen ? 'disabled' : ''}`}>
+      <div
+        style={{ height: '75%' }} // Aqui a propriedade style foi corrigida
+        className={`card card-fixed ${isModalOpen ? 'disabled' : ''}`}
+      >
         <div className="card-header">
           <h5>Chat</h5>
         </div>
@@ -85,6 +111,7 @@ const Chat = () => {
       </div>
     </div>
   );
+  
 };
 
 export default Chat;

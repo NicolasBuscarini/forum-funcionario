@@ -33,7 +33,7 @@ async function connectToRabbitMQ() {
                     // Broadcast message to all WebSocket clients
                     clients.forEach(client => {
                         if (client.readyState === WebSocket.OPEN) {
-                            client.send(`Message from RabbitMQ: ${message}`);
+                            client.send(`${message}`);
                         }
                     });
                     channel.ack(msg); // Acknowledge the message as processed
@@ -62,13 +62,21 @@ wss.on('connection', (ws) => {
 
     // Quando o servidor recebe uma mensagem
     ws.on('message', async (message) => {
-        console.log(`Mensagem recebida do front: ${message}`);
-        if (channel) {
-            channel.sendToQueue('chat-messages', Buffer.from(message), { persistent: true });
-        } else {
+        console.log(`Mensagem recebida: ${message}`);
+        try {
+          const messageObj = JSON.parse(message);
+          if (channel) {
+            // Enviar o JSON para a fila RabbitMQ
+            channel.sendToQueue('chat-messages', Buffer.from(JSON.stringify(messageObj)));
+          } else {
             ws.send('Erro ao enviar mensagem');
+          }
+        } catch (error) {
+          console.error('Erro ao processar a mensagem:', error);
+          ws.send('Erro ao processar a mensagem');
         }
-    });
+      });
+      
 
     // Quando a conexão é fechada
     ws.on('close', () => {
