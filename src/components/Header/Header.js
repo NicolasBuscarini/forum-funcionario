@@ -1,11 +1,12 @@
 import React from 'react';
-import './Header.css'; // Crie esse arquivo CSS para estilizar o componente
+import './Header.css'; 
+import { title } from '../../config';
 
 const Header = () => {
   return (
     <header>
-      <img src="purifarma.png" alt="Logo Purifarma" />
-      <h1>Portal Purifarma</h1>
+      <img src="logo.png" alt="Logo" />
+      <h1>{title}</h1>
     </header>
   );
 };
