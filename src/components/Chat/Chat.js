@@ -17,7 +17,7 @@ const Chat = () => {
       addMessage(`Você: ${input}`);
       setInput('');
       // Simula uma resposta do chat sem substituir a mensagem enviada
-      setTimeout(() => addMessage('Outro usuário: Esta é uma resposta automática.'), 1000);
+      //setTimeout(() => addMessage('Outro usuário: Esta é uma resposta automática.'), 1000);
     }
   };
 
