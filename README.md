@@ -20,6 +20,8 @@ Este projeto implementa um sistema de chat em tempo real utilizando React no fro
 ### Persistência (Opcional):
 - **Banco de Dados:** Caso necessário, as mensagens podem ser armazenadas para consultas futuras ou análise.
 
+![design_system](./doc/design_system.png)
+
 ## Fluxo de Dados
 
 ### Envio de Mensagem:
