@@ -1,0 +1,20 @@
+/* Container que ocupa 100% da altura da tela */
+.full-height-container {
+  height: 100vh; /* Altura total da viewport */
+  display: flex;
+}
+
+/* Coluna de conteúdo que rola */
+.scrollable-content {
+  height: 100%; /* Ocupa 100% da altura do container */
+  overflow-y: auto; /* Habilita scroll vertical */
+  padding-right: 15px; /* Adiciona espaço entre a coluna e o chat */
+}
+
+/* Chat fixo à direita */
+.chat-fixed {
+  position: sticky; /* Fixa o chat ao rolar */
+  top: 0; /* Fixa o chat no topo da viewport */
+  height: 100vh; /* O chat ocupa a altura total da viewport */
+  padding-left: 15px;
+}
