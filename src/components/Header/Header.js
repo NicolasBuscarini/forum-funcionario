@@ -5,7 +5,7 @@ import { title } from '../../config';
 const Header = () => {
   return (
     <header>
-      <img src="logo.png" alt="Logo" />
+      <img src="puribmp.png" alt="Logo" />
       <h1>{title}</h1>
     </header>
   );
