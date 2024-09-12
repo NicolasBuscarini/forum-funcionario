@@ -5,7 +5,7 @@ import "./HRPage.css";
 
 const HRPage = () => {
   return (
-    <Container fluid className="mt-4 hr-container">
+    <div>
       {/* Título principal da página */}
       <Card className="text-center bg-info text-white mb-4">
         <Card.Body>
@@ -99,7 +99,7 @@ const HRPage = () => {
           </Card>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 
