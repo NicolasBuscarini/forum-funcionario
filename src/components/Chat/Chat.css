@@ -19,14 +19,7 @@
     width: 300px; /* Ajuste o tamanho do modal conforme necessário */
     z-index: 1001; /* Maior que o overlay */
   }
-  
-  .chat-container {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-  }
-  
+    
   .card.disabled {
     opacity: 0.5;
     pointer-events: none;
@@ -36,12 +29,6 @@
 .chat-container {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    height: 50%; 
-  }
-  
-  .card {
     height: 100%; 
   }
   

@@ -80,7 +80,7 @@ const Chat = () => {
     <div className="chat-container">
       <UserModal isOpen={isModalOpen} onClose={handleUserSubmit} />
       <div
-        style={{ height: '75%' }} // Aqui a propriedade style foi corrigida
+        style={{ height: '100%' }}
         className={`card card-fixed ${isModalOpen ? 'disabled' : ''}`}
       >
         <div className="card-header">
