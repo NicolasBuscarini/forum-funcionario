@@ -38,29 +38,7 @@ const HRPage = () => {
           </Card>
         </Col>
 
-        {/* Seção de Documentos Importantes */}
-        <Col md={4} className="mb-4">
-          <Card>
-            <Card.Header as="h5">Documentos Importantes</Card.Header>
-            <Card.Body>
-              <ListGroup>
-                <ListGroup.Item>
-                  <a href="/docs/politica-beneficios.pdf" download>Política de Benefícios</a>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <a href="/docs/manual-colaborador.pdf" download>Manual do Colaborador</a>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <a href="/docs/regulamento-interno.pdf" download>Regulamento Interno</a>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <a href="/docs/ferias-2024.pdf" download>Calendário de Férias 2024</a>
-                </ListGroup.Item>
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
-
+        
         {/* Seção de Contato do RH */}
         <Col md={4} className="mb-4">
           <Card>
