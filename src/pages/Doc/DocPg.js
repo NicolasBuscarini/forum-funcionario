@@ -1,9 +1,9 @@
-// HRPage.js
+// DocPg.js
 import React from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
-import "./DocPage.css";
+import "./DocPg.css";
 
-const DocPage = () => {
+const DocPg = () => {
   return (
     <div>
       {/* Título principal da página */}
@@ -45,4 +45,4 @@ const DocPage = () => {
   );
 };
 
-export default DocPage;
+export default DocPg;

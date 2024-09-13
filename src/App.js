@@ -11,7 +11,9 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home/Home";
 import HRPage from "./pages/HRPage/HRPage";
-import DocPage from "./pages/DocPage/DocPage.Js";
+import DocPg from "./pages/Doc/DocPg.js";
+
+
 
 const App = () => {
   return (
@@ -30,7 +32,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/rh" element={<HRPage />} />
-              <Route path="/Documentos" element={<DocPage />} />
+              <Route path="/Documentos" element={<DocPg />} />
             </Routes>
           </div>
 
