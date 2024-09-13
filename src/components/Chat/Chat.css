@@ -1,31 +1,3 @@
-.modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Maior que o z-index do componente de chat */
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 300px; /* Ajuste o tamanho do modal conforme necessário */
-    z-index: 1001; /* Maior que o overlay */
-  }
-    
-  .card.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  
-
 .chat-container {
     position: relative;
     width: 100%;
