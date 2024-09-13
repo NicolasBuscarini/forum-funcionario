@@ -3,7 +3,7 @@ import React from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
 import "./DocPage.css";
 
-const HRPage = () => {
+const DocPage = () => {
   return (
     <div>
       {/* Título principal da página */}
@@ -45,4 +45,4 @@ const HRPage = () => {
   );
 };
 
-export default HRPage;
+export default DocPage;

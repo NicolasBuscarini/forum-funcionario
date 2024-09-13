@@ -11,7 +11,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home/Home";
 import HRPage from "./pages/HRPage/HRPage";
-import DocPage from "./pages/DocPage/DocPage";
+import DocPage from "./pages/DocPage/DocPage.Js";
 
 const App = () => {
   return (
