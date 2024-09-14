@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { AuthContext } from "../../context/AuthContext";
 import './Chat.css'; 
-import UserModal from './Modal/UserModal';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [user, setUser] = useState(null); // Store the user
-  const [isModalOpen, setIsModalOpen] = useState(true);
   const ws = useRef(null); // WebSocket reference
+
+  const { authData } = useContext(AuthContext);
 
   useEffect(() => {
     // Establish WebSocket connection
@@ -48,11 +49,6 @@ const Chat = () => {
     };
   }, []);
 
-  const handleUserSubmit = (userData) => {
-    setUser(userData);
-    setIsModalOpen(false);
-  };
-
   const addMessage = (message) => {
     setMessages((prevMessages) => [...prevMessages, message]);
   };
@@ -61,8 +57,8 @@ const Chat = () => {
     if (input.trim() && user) {
       const messageObj = {
         user: {
-          name: user.name,
-          ip: user.ip, // Substitua por lógica para obter o IP do usuário, se disponível
+          name: authData?.username,
+          ip: "IP Desconhecido", // Substitua por lógica para obter o IP do usuário, se disponível
         },
         message: input,
       };
@@ -78,10 +74,9 @@ const Chat = () => {
 
   return (
     <div className="chat-container">
-      <UserModal isOpen={isModalOpen} onClose={handleUserSubmit} />
       <div
-        style={{ height: '75%' }} // Aqui a propriedade style foi corrigida
-        className={`card card-fixed ${isModalOpen ? 'disabled' : ''}`}
+        style={{ height: '100%' }}
+        className={`card card-fixed`}
       >
         <div className="card-header">
           <h5>Chat</h5>
@@ -101,9 +96,8 @@ const Chat = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Digite sua mensagem..."
-              disabled={isModalOpen}
             />
-            <button className="btn btn-primary" onClick={sendMessage} disabled={isModalOpen}>
+            <button className="btn btn-primary" onClick={sendMessage}>
               Enviar
             </button>
           </div>

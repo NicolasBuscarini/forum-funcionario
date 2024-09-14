@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 .env
 public/etiqueta-bruto.pdf
+public/puribmp.bmp
+public/puribmp.png
