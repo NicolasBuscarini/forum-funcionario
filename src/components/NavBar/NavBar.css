@@ -1,0 +1,52 @@
+/* NavBar.css */
+.custom-navbar {
+    background-color: #217aff; /* Fundo branco */
+    border-bottom: 4px solid #d52121; /* Barra inferior vermelha */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Arial', sans-serif; /* Fonte moderna */
+    color: #ffffff; /* Cor das letras em vermelho */
+    font-weight: bold;
+  }
+  
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    color: #b22222; /* Vermelho */
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 20px; /* Espaçamento entre os links */
+  }
+  
+  .nav-link {
+    font-size: 18px;
+    color: #b22222; /* Cor inicial do link */
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: #b22222; /* Cor de fundo laranja no hover */
+    color: #ffffff; /* Texto branco no hover */
+  }
+  
+  .nav-link.active {
+    color: #b22222; /* Cor para o item ativo */
+    font-weight: bold;
+    border-bottom: 2px solid #b22222; /* Barra inferior para o item ativo */
+  }
+  

@@ -11,6 +11,34 @@ services:
     networks:
       - webnet
 
+  websocket-server:
+    build:
+      context: ./websocket-server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: websocket-server
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - webnet
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    container_name: rabbitmq
+    networks:
+      - webnet
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
 networks:
   webnet:
     driver: bridge
