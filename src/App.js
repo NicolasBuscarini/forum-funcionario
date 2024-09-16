@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
 import Chat from "./components/Chat/Chat";
 import Footer from "./components/Footer/Footer";
 import BirthdayBoard from "./components/BirthdayBoard/BirthdayBoard";
-import CurrentDate from "./components/CurrentDate/CurrentDate";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home/Home";
@@ -26,14 +25,14 @@ const Layout = ({ children }) => {
       {!isLoginPage && <NavBar />}
       <div className="container-fluid mt-4 mb-4">
         <div className="row">
-          <div className="col-lg-2">
-            {!isLoginPage && <CurrentDate />}
+          <div className="col-xl-3 mb-2">
+            {/* {!isLoginPage && <CurrentDate />} */}
             {!isLoginPage && <BirthdayBoard />}
           </div>
-          <div className="col-lg-7">
+          <div className="col-xl-6 mb-2">
             {children} {/* Renderiza os componentes dentro do Layout */}
           </div>
-          <div className="col-lg-3">
+          <div className="col-xl-3 mb-2">
           {!isLoginPage && <Chat />}
           </div>
         </div>
