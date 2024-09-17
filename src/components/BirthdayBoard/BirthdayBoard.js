@@ -10,19 +10,20 @@ const BirthdayBoard = () => {
 
   // Mock de aniversariantes para exibição de testes com o novo formato
   const mockBirthdays = [
-    { nome: 'João Silva', dia: 5, mes: 9, filial: 'Filial 1', descricao: 'CTT1' },
-    { nome: 'Nicolas', Dia: 5, Mes: 9, Filial: 'Filial 2', Descricao: 'CTT2' },
-    { nome: 'Ronaldo', Dia: 5, Mes: 9, Filial: 'Filial 3', Descricao: 'CTT3' },
-    { nome: 'Maria Santos', Dia: 12, Mes: 9, Filial: 'Filial 1', Descricao: 'CTT1' },
-    { nome: 'Carlos Souza', Dia: 20, Mes: 9, Filial: 'Filial 2', Descricao: 'CTT2' },
-    { nome: 'Ana Pereira', Dia: 25, Mes: 9, Filial: 'Filial 3', Descricao: 'CTT3' },
+    { nome: 'João Silva', dia: 5, mes: 9, filial: 'filial 1', descricao: 'CTT1' },
+    { nome: 'Nicolas', dia: 5, mes: 9, filial: 'filial 2', descricao: 'CTT2' },
+    { nome: 'Ronaldo', dia: 5, mes: 9, filial: 'filial 3', descricao: 'CTT3' },
+    { nome: 'Maria Santos', dia: 12, mes: 9, filial: 'filial 1', descricao: 'CTT1' },
+    { nome: 'Carlos Souza', dia: 20, mes: 9, filial: 'filial 2', descricao: 'CTT2' },
+    { nome: 'Ana Pereira', dia: 25, mes: 9, filial: 'filial 3', descricao: 'CTT3' },
   ];
 
   // Função para buscar os aniversariantes do endpoint
   const fetchBirthdays = async () => {
     try {
-      const response = await fetch('https://localhost:5011/api/employees/current-month');
+      const response = await fetch('http://localhost:5011/api/Employee/current-month');
       const data = await response.json();
+      console.log(data);
       setBirthdays(data);
     } catch (error) {
       console.error('Erro ao buscar aniversariantes:', error);
@@ -34,6 +35,7 @@ const BirthdayBoard = () => {
   // Chama a função fetchBirthdays quando o componente é montado
   useEffect(() => {
     fetchBirthdays();
+    console.log(birthdays);
   }, []);
 
   // Função para marcar as datas de aniversário no calendário
