@@ -97,7 +97,7 @@ const BirthdayBoard = () => {
             {getBirthdaysForSelectedDate().length > 0 ? (
               getBirthdaysForSelectedDate().map((birthday, index) => (
                 <ListGroup.Item key={index} className="text-center">
-                  <strong>{birthday.nome}</strong> - Aniversário: {birthday.dia}/{birthday.mes} - Filial: {birthday.filial}
+                  <strong>{birthday.nome}</strong> - Depto: {birthday.descricao} - Filial: {birthday.filial}
                 </ListGroup.Item>
               ))
             ) : (

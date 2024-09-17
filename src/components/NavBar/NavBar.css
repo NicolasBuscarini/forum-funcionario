@@ -6,7 +6,7 @@
   justify-content: flex-start; /* Alinha tudo à esquerda */
   align-items: center;
   font-family: 'Arial', sans-serif;
-  color: #ffffff; /* Cor do texto */
+  color: #ffffffc7; /* Cor do texto */
   font-weight: bold;
 }
 
@@ -48,7 +48,7 @@
 
 /* Link ativo - cor diferente para cada link */
 .nav-link.active {
-  background-color: #ff4500; /* Fundo laranja para o link ativo */
+  background-color: #b22222; /* Fundo laranja para o link ativo */
   color: #ffffff; /* Texto branco no link ativo */
-  border-bottom: 3px solid #ffffff; /* Barra inferior branca para o link ativo */
+  border-bottom: 3px solid #ffffff5b; /* Barra inferior branca para o link ativo */
 }
