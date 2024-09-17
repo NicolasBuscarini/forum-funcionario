@@ -42,7 +42,8 @@ const BirthdayBoard = () => {
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const day = date.getDate();
-      const hasBirthday = birthdays.some(birthday => birthday.Dia === day && birthday.Mes === date.getMonth() + 1);
+      const month = date.getMonth() + 1; // Mês começa em 0, por isso o +1
+      const hasBirthday = birthdays.some(birthday => birthday.dia === day && birthday.mes === month);
 
       if (hasBirthday) {
         return <span role="img" aria-label="birthday">🎂</span>;
@@ -55,8 +56,8 @@ const BirthdayBoard = () => {
   const getBirthdaysForSelectedDate = () => {
     return birthdays.filter(birthday => {
       return (
-        birthday.Dia === selectedDate.getDate() &&
-        birthday.Mes === selectedDate.getMonth() + 1
+        birthday.dia === selectedDate.getDate() &&
+        birthday.mes === selectedDate.getMonth() + 1
       );
     });
   };
@@ -96,7 +97,7 @@ const BirthdayBoard = () => {
             {getBirthdaysForSelectedDate().length > 0 ? (
               getBirthdaysForSelectedDate().map((birthday, index) => (
                 <ListGroup.Item key={index} className="text-center">
-                  <strong>{birthday.nome}</strong> - Aniversário: {birthday.Dia}/{birthday.Mes} - Filial: {birthday.Filial}
+                  <strong>{birthday.nome}</strong> - Aniversário: {birthday.dia}/{birthday.mes} - Filial: {birthday.filial}
                 </ListGroup.Item>
               ))
             ) : (
