@@ -2,14 +2,17 @@
 
 
 .custom-navbar {
-  background-color: #606873; /* Cor de fundo do Navbar */
+
+
+  padding: 10px 20px;
+  background-color: #515151; /* Cor de fundo do Navbar */
   border-bottom: 5px solid #d52121; /* Barra inferior vermelha */
   padding: 10px 20px;
   display: flex;
   justify-content: flex-start; /* Alinha tudo à esquerda */
   align-items: center;
   font-family: 'Arial', sans-serif;
-  color: #ffffffc7; /* Cor do texto */
+  color: #B7B7B7; /* Cor do texto */
   font-weight: bold;
 }
 
@@ -63,5 +66,5 @@
 }
 
 .nav-link .icon {
-  margin-right: 15px; /* Adiciona espaçamento entre o ícone e o texto */
+  margin-right: 10px; /* Adiciona espaçamento entre o ícone e o texto */
 }

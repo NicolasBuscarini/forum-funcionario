@@ -21,7 +21,7 @@ const Header = () => {
             INTRANET CORPORATIVO - Portal do Colaborador                            
           </h1>
           <h2 className="header-subtitle">Sua conexão com a Empresa</h2>
-          <h3>Bem vindo, {authData?.username} !</h3> 
+          <h3>Bem vindo, {formatName(authData?.username)} !</h3> 
           
         </div>
 
@@ -36,5 +36,18 @@ const Header = () => {
     </header>
   );
 };
+
+function formatName(name) {
+  // Separa a string em partes usando o ponto como delimitador
+  const parts = name.split('.');
+  
+  // Capitaliza a primeira letra de cada parte
+  const formattedParts = parts.map(part => {
+      return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+  });
+  
+  // Junta as partes com um espaço entre elas
+  return formattedParts.join(' ');
+}
 
 export default Header;

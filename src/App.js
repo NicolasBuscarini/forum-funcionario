@@ -19,6 +19,7 @@ const Layout = ({ children }) => {
   const location = useLocation(); // Hook agora está dentro do Router
 
   const isLoginPage = location.pathname === "/login"; // Verifica se é a rota de login
+  const isHomePage = location.pathname === "/"; // Verifica se é a rota de home
 
   return (
     <>
@@ -27,14 +28,15 @@ const Layout = ({ children }) => {
       <div className="container-fluid mt-4 mb-4">
         <div className="row">
           <div className="col-xl-3 mb-2">
-            {/* {!isLoginPage && <CurrentDate />} */}
-            {!isLoginPage && <BirthdayBoard />}
+            {/* Exibe o BirthdayBoard apenas na página Home */}
+            {!isLoginPage && isHomePage && <BirthdayBoard />}
           </div>
           <div className="col-xl-6 mb-2">
             {children} {/* Renderiza os componentes dentro do Layout */}
           </div>
           <div className="col-xl-3 mb-2">
-          {!isLoginPage && <Chat />}
+            {/* Exibe o Chat apenas na página Home */}
+            {!isLoginPage && isHomePage && <Chat />}
           </div>
         </div>
       </div>
@@ -56,7 +58,9 @@ const App = () => {
             <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/rh" element={<ProtectedRoute><HRPage /></ProtectedRoute>} />
             <Route path="/Documentos" element={<ProtectedRoute><DocPg /></ProtectedRoute>} />
+            <Route path="/Qualidade" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/Fique por Dentro" element={<ProtectedRoute><VideoPage /></ProtectedRoute>} />
+            <Route path="/Suporte" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           </Routes>
         </Layout>
       </Router>

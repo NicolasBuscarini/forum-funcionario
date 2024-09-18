@@ -81,8 +81,8 @@ const Chat = () => {
         style={{ height: '100%' }}
         className={`card card-fixed`}
       >
-        <div className="card-header">
-          <h5>Chat</h5>
+        <div className="card-header custom-card-header">
+          <h5 className="card-title custom-card-title"> Chat</h5>
         </div>
         <div className="card-body overflow-auto">
           {messages.map((msg, index) => (
@@ -100,8 +100,8 @@ const Chat = () => {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Digite sua mensagem..."
             />
-            <button className="btn btn-primary" onClick={sendMessage}>
-              Enviar
+            <button className="btn btn-primary custom-btn" onClick={sendMessage}>
+              Enviar 
             </button>
           </div>
         </div>

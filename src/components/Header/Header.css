@@ -1,5 +1,6 @@
 /* Header.css */
 .header-container {
+
     background-color: #ffffff; /* Fundo branco */
     padding: 20px;
     display: flex;
@@ -36,7 +37,7 @@
     font-family: 'Arial', sans-serif; /* Fontes mais comuns e legíveis */
     font-weight: bold; /* Negrito para dar destaque */
     border-bottom: darksalmon;
-    text-shadow: 0.1em 0.1em 0.2em rgba(191, 5, 5, 0.384);
+    text-shadow: 0.1em  0.1em  0.2em rgba(191, 5, 5, 0.384);
     margin: 0;
   }
   
