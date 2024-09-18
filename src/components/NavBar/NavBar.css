@@ -1,3 +1,6 @@
+
+
+
 .custom-navbar {
   background-color: #606873; /* Cor de fundo do Navbar */
   border-bottom: 5px solid #d52121; /* Barra inferior vermelha */
@@ -11,6 +14,7 @@
 }
 
 .navbar-container {
+
   display: flex;
   align-items: center;
   justify-content: flex-start; /* Mantém os links alinhados à esquerda */
@@ -51,4 +55,13 @@
   background-color: #b22222; /* Fundo laranja para o link ativo */
   color: #ffffff; /* Texto branco no link ativo */
   border-bottom: 3px solid #ffffff5b; /* Barra inferior branca para o link ativo */
+}
+
+.nav-link {
+  display: flex; /* Garante que o ícone e o texto fiquem lado a lado */
+  align-items: center; /* Alinha o ícone e o texto verticalmente */
+}
+
+.nav-link .icon {
+  margin-right: 15px; /* Adiciona espaçamento entre o ícone e o texto */
 }

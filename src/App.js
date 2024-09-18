@@ -11,6 +11,7 @@ import Home from "./pages/Home/Home";
 import HRPage from "./pages/HRPage/HRPage";
 import DocPg from "./pages/Doc/DocPg.js";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import VideoPage from "./pages/VideoPage/VideoPg";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
@@ -55,6 +56,7 @@ const App = () => {
             <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/rh" element={<ProtectedRoute><HRPage /></ProtectedRoute>} />
             <Route path="/Documentos" element={<ProtectedRoute><DocPg /></ProtectedRoute>} />
+            <Route path="/Fique por Dentro" element={<ProtectedRoute><VideoPage /></ProtectedRoute>} />
           </Routes>
         </Layout>
       </Router>

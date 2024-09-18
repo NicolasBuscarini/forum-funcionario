@@ -16,7 +16,7 @@
   .header-logo1 {
     width: 100px; /* Ajuste o tamanho conforme necessário */
     height: auto;
-    margin-left: 60px;
+    margin-left: 140px;
     margin-right: 40px; /* Espaçamento entre o logo e o texto */
   }
 
@@ -35,6 +35,8 @@
     color: #ff0000; /* Cor das letras em vermelho */
     font-family: 'Arial', sans-serif; /* Fontes mais comuns e legíveis */
     font-weight: bold; /* Negrito para dar destaque */
+    border-bottom: darksalmon;
+    text-shadow: 0.1em 0.1em 0.2em rgba(191, 5, 5, 0.384);
     margin: 0;
   }
   
@@ -42,6 +44,15 @@
     font-size: 22px; /* Subtítulo um pouco menor */
     color: #3108a1; /* Um tom de vermelho mais claro para contraste */
     font-family:  'Arial', sans-serif;
+    text-shadow: 0.1em 0.1em 0.2em rgba(33, 7, 120, 0.384);
+    margin: 5px 0 0;
+  }
+
+  .header-text {
+    font-size: 22px; /* Subtítulo um pouco menor */
+    color: #000000; /* Um tom de vermelho mais claro para contraste */
+    font-family:  'Arial', sans-serif;
+    text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.384);
     margin: 5px 0 0;
   }
   

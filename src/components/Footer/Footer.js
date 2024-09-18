@@ -6,7 +6,8 @@ import { title } from '../../config';
 const Footer = () => {
   return (
     <footer>
-      <p>&copy; 2024 {title}. Todos os direitos reservados.</p>
+      <p>&copy; 2024 {title}. Todos os direitos reservados.</p> <img src="/puripreto.png"  />
+      
     </footer>
   );
 };
