@@ -14,6 +14,9 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import VideoPage from "./pages/VideoPage/VideoPg";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import CreatePost from "./pages/CreatePost/CreatePost.js";
+import Qualidade from "./pages/Qualidade/Qualidade.js";
+
 
 const Layout = ({ children }) => {
   const location = useLocation(); // Hook agora está dentro do Router
@@ -58,9 +61,10 @@ const App = () => {
             <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/rh" element={<ProtectedRoute><HRPage /></ProtectedRoute>} />
             <Route path="/Documentos" element={<ProtectedRoute><DocPg /></ProtectedRoute>} />
-            <Route path="/Qualidade" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/Qualidade" element={<ProtectedRoute><Qualidade /></ProtectedRoute>} />
             <Route path="/Fique por Dentro" element={<ProtectedRoute><VideoPage /></ProtectedRoute>} />
             <Route path="/Suporte" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path="/Postar" element={<ProtectedRoute><CreatePost /></ProtectedRoute>} />
           </Routes>
         </Layout>
       </Router>

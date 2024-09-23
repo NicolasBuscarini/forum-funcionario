@@ -82,7 +82,7 @@ const Chat = () => {
         className={`card card-fixed`}
       >
         <div className="card-header custom-card-header">
-          <h5 className="card-title custom-card-title"> Chat</h5>
+          <h5 className="card-title custom-card-title"> Chat, interaja com seus colegas.</h5>
         </div>
         <div className="card-body overflow-auto">
           {messages.map((msg, index) => (

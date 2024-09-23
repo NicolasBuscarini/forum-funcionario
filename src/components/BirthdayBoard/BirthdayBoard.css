@@ -1,27 +1,2 @@
-.birthday-container {
-    padding: 20px;
-    border: 1px solid #B06A00; /* Bordas em laranja */
-    border-radius: 8px;
-    background-color: #FFCB7D; /* Fundo em tom claro de laranja */  
-    color: #dc6700; /* Texto em tom escuro de laranja */
-    font-size: 15px ;
-    text-align: left;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .birthday-title {
-    margin-bottom: 10px;
-    color: #B06A00; /* Título em um tom mais vibrante de laranja */
-    font-size: 25px ;
-  }
-  
-  .birthday-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .birthday-item {
-    padding: 8px 0;
-    border-bottom: 1px solid #FFA500;
-  }
+
   

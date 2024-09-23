@@ -70,7 +70,7 @@ const BirthdayBoard = () => {
     <Container className="birthday-container">
       <Row>
         <Col className="d-flex justify-content-center">
-          <h2 className="birthday-title">Aniversariantes de {selectedDate.toLocaleString('default', { month: 'long' })}</h2>
+          <h2 className="birthday-title text-center">Aniversariantes de {selectedDate.toLocaleString('default', { month: 'long' })}</h2>
         </Col>
       </Row>
       <Row>
@@ -88,7 +88,7 @@ const BirthdayBoard = () => {
       </Row>
       <Row className="mt-4">
         <Col className="d-flex justify-content-center">
-          <h2 className="birthday-title">Aniversariantes do dia {selectedDate.toLocaleDateString()}</h2>
+          <h2 className="birthday-title text-center">Aniversariantes do dia {selectedDate.toLocaleDateString()}</h2>
         </Col>
       </Row>
       <Row className="d-flex justify-content-center">

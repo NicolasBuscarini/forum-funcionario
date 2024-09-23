@@ -1,57 +1,64 @@
 // Home.js
-import React from "react";
+import React, { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Announcements from "../../components/Home/Announcements";
 import PopularTopics from "../../components/Home/PopularTopics";
 import ActivityFeed from "../../components/Home/ActivityFeed";
 import { Container, Row, Col, Card } from "react-bootstrap";
-
+import './Home.css';
 
 const Home = () => {
+  const { authData, logout } = useContext(AuthContext);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+      const fetchPosts = async () => {
+          try {
+              if (!authData || !authData.token) {
+                  throw new Error('Você precisa estar autenticado para ver os posts.');
+              }
+
+              const response = await axios.get('http://localhost:5011/api/Post/recentes', {
+                  headers: {
+                      Authorization: `Bearer ${authData.token}`
+                  }
+              });
+              setPosts(response.data);
+          } catch (err) {
+              if (err.response && err.response.status === 401) {
+                  logout(); // Log out if unauthorized
+              }
+              setError(err.message);
+          } finally {
+              setLoading(false);
+          }
+      };
+
+      fetchPosts();
+  }, [authData, logout]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="text-danger">Error: {error}</p>;
+
   return (
-    <div>
-      {/* Banner de boas-vindas */}
-      <Card className="text-center bg-primary text-white mb-4">
-        <Card.Body>
-          <Card.Title>Bem-vindo ao Portal do Colaborador!</Card.Title>
-          <Card.Text>Acompanhe as últimas novidades e interaja com seus colegas.</Card.Text>
-        </Card.Body>
-      </Card>
-
-      <Row>
-        {/* Anúncios recentes */}
-        <Col md={6} className="mb-4">
-          <Card>
-            <Card.Header as="h5">Anúncios Recentes</Card.Header>
-            <Card.Body>
-              <Announcements />
-            </Card.Body>
-          </Card>
-        </Col>
-
-        {/* Tópicos populares no fórum */}
-        <Col md={6} className="mb-4">
-          <Card>
-            <Card.Header as="h5">Tópicos Populares</Card.Header>
-            <Card.Body>
-              <PopularTopics />
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
-      {/* Feed de atividades */}
-      <Row>
-        <Col>
-          <Card>
-            <Card.Header as="h5">Feed de Atividades</Card.Header>
-            <Card.Body>
-              <ActivityFeed />
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+    <div className="container-custom">
+        <h2>Aqui você pode acompanhar as últimas postagens</h2>
+        <div className="list-group">
+            {posts.map(post => (
+                <div key={post.id} className="list-group-item">
+                    <h4>{post.categoria}</h4>
+                    <h5 className="mb-1">{post.titulo}</h5>
+                    <p className="mb-1">{post.conteudo}</p>
+                    <small>Autor: {post.autor} | Criado em: {new Date(post.dataCriacao).toLocaleString()}</small>
+                </div>
+            ))}
+        </div>
     </div>
-  );
+);
 };
 
 export default Home;
