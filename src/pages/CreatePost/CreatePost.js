@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [categoria, setCategoria] = useState('');
+  const [categoria, setCategoria] = useState('Qualidade'); // Categoria inicial selecionada
   const [tags, setTags] = useState('');
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -86,14 +86,17 @@ const CreatePost = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="categoria" className="form-label">Categoria</label>
-          <input
-            type="text"
+          <select
             className="form-control"
             id="categoria"
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
             required
-          />
+          >
+            <option value="Qualidade">Qualidade</option>
+            <option value="RH">RH</option>
+            <option value="Outros">Outros</option>
+          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="tags" className="form-label">Tags (separadas por vírgulas)</label>

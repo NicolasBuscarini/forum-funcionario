@@ -18,6 +18,8 @@ import CreatePost from "./pages/CreatePost/CreatePost.js";
 import Qualidade from "./pages/Qualidade/Qualidade.js";
 
 
+
+
 const Layout = ({ children }) => {
   const location = useLocation(); // Hook agora está dentro do Router
 
@@ -28,22 +30,35 @@ const Layout = ({ children }) => {
     <>
       {!isLoginPage && <Header />}
       {!isLoginPage && <NavBar />}
+
+
       <div className="container-fluid mt-4 mb-4">
+     
+        
         <div className="row">
-          <div className="col-xl-3 mb-2">
-            {/* Exibe o BirthdayBoard apenas na página Home */}
-            {!isLoginPage && isHomePage && <BirthdayBoard />}
-          </div>
-          <div className="col-xl-6 mb-2">
+          {/* Renderiza a coluna esquerda apenas na Home */}
+          {isHomePage && (
+            <div className="col-xl-3 mb-2">
+              <BirthdayBoard />
+            </div>
+          )}
+
+          {/* Ajusta a largura da coluna central dependendo das colunas laterais */}
+          <div className={isHomePage ? "col-xl-6 mb-2" : "col-xl-12 mb-2"}>
             {children} {/* Renderiza os componentes dentro do Layout */}
           </div>
-          <div className="col-xl-3 mb-2">
-            {/* Exibe o Chat apenas na página Home */}
-            {!isLoginPage && isHomePage && <Chat />}
-          </div>
+
+          {/* Renderiza a coluna direita apenas na Home */}
+          {isHomePage && (
+            <div className="col-xl-3 mb-2">
+              <Chat />
+            </div>
+          )}
         </div>
       </div>
       {!isLoginPage && <Footer />}
+
+
     </>
   );
 };
@@ -60,8 +75,8 @@ const App = () => {
             {/* Protected Routes */}
             <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/rh" element={<ProtectedRoute><HRPage /></ProtectedRoute>} />
-            <Route path="/Documentos" element={<ProtectedRoute><DocPg /></ProtectedRoute>} />
             <Route path="/Qualidade" element={<ProtectedRoute><Qualidade /></ProtectedRoute>} />
+            <Route path="/Documentos" element={<ProtectedRoute><DocPg /></ProtectedRoute>} />
             <Route path="/Fique por Dentro" element={<ProtectedRoute><VideoPage /></ProtectedRoute>} />
             <Route path="/Suporte" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/Postar" element={<ProtectedRoute><CreatePost /></ProtectedRoute>} />

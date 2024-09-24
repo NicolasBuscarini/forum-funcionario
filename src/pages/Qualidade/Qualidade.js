@@ -1,9 +1,11 @@
-// Qualidade.js
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
-import { Card, Col, ListGroup } from 'react-bootstrap'; // Importação dos componentes necessários do Bootstrap
+import { Card, Col, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Qualidade.css';
+import { Container, Row,   Button } from "react-bootstrap";
+
 
 const Qualidade = () => {
     const { authData, logout } = useContext(AuthContext);
@@ -41,23 +43,25 @@ const Qualidade = () => {
     if (error) return <p className="text-danger">Error: {error}</p>;
 
     return (
-        <div className="container mt-4">
-            <div className="row">
-                {/* Coluna antes do conteúdo principal */}
-                <div className="col-md-2">
+        <div className="container-fluid mt-1">
+            <div>
+      
+            <Card className="text-center quali-custom-card mb-4 ">
+                <Card.Body>
+                <Card.Title as="h1">Qualidade e Tecnologia</Card.Title>
+                <Card.Text as="h4"> Saúde pública e satisfação de seus clientes. Preocupada com o atendimento desses princípios, a Purifarma garante, por meio de seu sistema de garantia, a qualidade, confiabilidade e segurança de seus produtos.</Card.Text>
+                </Card.Body>
+            </Card>
+            </div>
+            <div className="row no-gutters">
+                {/* Coluna antes do conteúdo principal, agora ocupando 25% da largura */}
+                <div className="col-lg-3 col-md-3">
                     <div>
-                        {/* Título principal da página */}
-                        <Card className="text-center bg-info text-white mb-4">
-                            <Card.Body>
-                                <Card.Title>Documentos</Card.Title>
-                                <Card.Text>Aqui você pode fazer o download dos documentos.</Card.Text>
-                            </Card.Body>
-                        </Card>
-
+                
                         {/* Seção de Documentos Importantes */}
-                        <Col md={12} className="mb-4">
+                        <Col md={12} className=" mb-4">
                             <Card>
-                                <Card.Header as="h5">Documentos Importantes</Card.Header>
+                                <Card.Header as="h5">Aqui você pode fazer o download dos documentos.</Card.Header>
                                 <Card.Body>
                                     <ListGroup>
                                         <ListGroup.Item>
@@ -79,8 +83,8 @@ const Qualidade = () => {
                     </div>
                 </div>
 
-                {/* Conteúdo principal */}
-                <div className="col-md-8">
+                {/* Conteúdo principal ocupando 50% da largura */}
+                <div className="col-lg-6 col-md-6">
                     <h2>Posts da Categoria "Qualidade"</h2>
                     <div className="list-group">
                         {posts.map(post => (
@@ -93,12 +97,47 @@ const Qualidade = () => {
                     </div>
                 </div>
 
-                {/* Coluna depois do conteúdo principal */}
-                <div className="col-md-2">
-                    <p>Coluna à direita.</p>
+                {/* Coluna depois do conteúdo principal ocupando 25% da largura */}
+                <div className=" col-lg-3 col-md-3">
+                    <div className=' mb-3'>
+                    <Card>
+                        <Card.Header as="h5">Contato do RH</Card.Header>
+                        <Card.Body>
+                        <p><strong>Email:</strong> rh@empresa.com.br</p>
+                        <p><strong>Telefone:</strong> (11) 1234-5678</p>
+                        <p><strong>Horário de Atendimento:</strong> Seg-Sex, 9h - 17h</p>
+                        <Button variant="primary" href="mailto:rh@empresa.com.br">Enviar Email</Button>
+                        </Card.Body>
+                    </Card>
+                   
+                    </div >  
+                    <div className='text-center mb-3'></div>
+                        <Card >
+                        <Card.Header as="h5">Perguntas Frequentes (FAQ)</Card.Header>
+                        <Card.Body>
+                        <ListGroup>
+                            <ListGroup.Item>
+                            <strong>Como solicito minhas férias?</strong> Envie um email para rh@empresa.com.br com suas datas preferidas.
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                            <strong>Como faço para atualizar meus dados cadastrais?</strong> Entre em contato com o RH por email ou telefone.
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                            <strong>Posso solicitar adiantamento do 13º salário?</strong> Sim, verifique o regulamento interno para mais informações.
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                            <strong>Como consultar meus holerites?</strong> Utilize o sistema de gestão de pessoas ou contate o RH.
+                            </ListGroup.Item>
+                        </ListGroup>
+                        </Card.Body>
+                        </Card>
+                    </div>
+                
                 </div>
+                
+
             </div>
-        </div>
+       
     );
 };
 

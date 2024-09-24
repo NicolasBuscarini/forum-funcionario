@@ -45,7 +45,16 @@ const Home = () => {
   if (error) return <p className="text-danger">Error: {error}</p>;
 
   return (
+
+   
+
+
     <div className="container-custom">
+
+
+
+
+
         <h2>Aqui você pode acompanhar as últimas postagens</h2>
         <div className="list-group">
             {posts.map(post => (
@@ -57,6 +66,7 @@ const Home = () => {
                 </div>
             ))}
         </div>
+
     </div>
 );
 };
