@@ -38,16 +38,21 @@ const Header = () => {
 };
 
 function formatName(name) {
+  if (!name) {
+    return ""; // Retorna um nome padrão se o nome for indefinido ou null
+  }
+  
   // Separa a string em partes usando o ponto como delimitador
   const parts = name.split('.');
-  
+
   // Capitaliza a primeira letra de cada parte
   const formattedParts = parts.map(part => {
-      return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+    return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
   });
-  
+
   // Junta as partes com um espaço entre elas
   return formattedParts.join(' ');
 }
+
 
 export default Header;
