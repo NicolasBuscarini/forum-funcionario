@@ -18,3 +18,16 @@
   height: 100vh; /* O chat ocupa a altura total da viewport */
   padding-left: 15px;
 }
+
+.top-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Para garantir que fique acima de outros elementos */
+}
+
+body {
+  padding-top: 80; /* Ajuste conforme a altura do card */
+}
+

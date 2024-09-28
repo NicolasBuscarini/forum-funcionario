@@ -1,17 +1,99 @@
-.home-container {
-  padding: 20px;
+.container-custom {
+  padding: 15px;
+  border: 1px solid #425b64; /* Bordas em laranja */
+  color: #939393;
+  background-color: #fafafa; /* Fundo claro */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
-.welcome-banner {
-  border-radius: 5px;
+h2 {
+  color: #425b64; /* Cor do título */
+  font-weight: bold; /* Negrito */
+  margin-bottom: 15px; /* Espaço abaixo do título */
+}
+
+.text-center{
+  text-align: center; /* Centraliza o título */
+}
+
+.list-group {
+  margin-top: 10px; /* Espaço acima da lista */
 }
 
 .list-group-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  white-space: pre-wrap; /* Preserva quebras de linha e espaços */
+ /* word-wrap: break-word;  Quebra as palavras grandes para evitar estouro de linha */
+
+  background-color: #ffffff; /* Fundo branco para os itens da lista */
+  border: 1px solid #dee2e6; /* Borda cinza clara */
+  border-radius: 5px; /* Bordas arredondadas nos itens */
+  padding: 10px; /* Espaçamento interno */
+  margin-bottom: 10px; /* Espaço abaixo de cada item */
+  transition: background-color 0.3s; /* Transição suave para hover */
 }
 
-.badge {
-  font-size: 14px;
+.list-group-item:hover {
+  background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
 }
+
+.mb-1 {
+  margin-bottom: 5px; /* Margem abaixo dos elementos com a classe mb-1 */
+}
+
+small {
+  color: #6c757d; /* Cor cinza para o texto pequeno */
+}
+
+.birthday-container {
+  padding: 20px;
+  border: 1px solid #B06A00; /* Bordas em laranja */
+  border-radius: 8px;
+  background-color: #FFCB7D; /* Fundo em tom claro de laranja */  
+  color: #dc6700; /* Texto em tom escuro de laranja */
+  font-size: 15px ;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.birthday-title {
+  margin-bottom: 10px;
+  color: #B06A00; /* Título em um tom mais vibrante de laranja */
+  font-size: 25px ;
+}
+
+.birthday-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.birthday-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #FFA500;
+}
+
+.chat-container {
+    width: 100%;
+    height: 100%; 
+    
+    border-radius: 8px;  
+  }
+  
+.custom-card-header {
+  background-color: #6FD169 !important;
+  
+  
+  
+}
+.custom-card-title {
+
+  color: #1D541A !important;
+  font-size: 25px;
+
+}
+
+.custom-btn{
+  background-color: #6FD169 !important;
+  color: #1D541A !important;
+}
+

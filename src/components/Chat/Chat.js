@@ -6,12 +6,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [user, setUser] = useState(null); // Store the user
   const ws = useRef(null); // WebSocket reference
 
   const { authData } = useContext(AuthContext);
 
   useEffect(() => {
+    if (!authData) {
+      console.error('User is not authenticated');
+      return;
+    }
+
     // Establish WebSocket connection
     ws.current = new WebSocket('ws://localhost:8080'); // Adjust the URL as necessary
 
@@ -37,7 +41,6 @@ const Chat = () => {
         console.error('Erro ao processar a mensagem recebida:', error);
       }
     };
-    
 
     ws.current.onclose = () => {
       console.log('WebSocket connection closed');
@@ -47,17 +50,17 @@ const Chat = () => {
     return () => {
       ws.current.close(); // Clean up WebSocket connection on component unmount
     };
-  }, []);
+  }, [authData]); // Dependência authData para reestabelecer a conexão WebSocket se necessário
 
   const addMessage = (message) => {
     setMessages((prevMessages) => [...prevMessages, message]);
   };
 
   const sendMessage = () => {
-    if (input.trim() && user) {
+    if (input.trim() && authData) {
       const messageObj = {
         user: {
-          name: authData?.username,
+          name: authData.username,
           ip: "IP Desconhecido", // Substitua por lógica para obter o IP do usuário, se disponível
         },
         message: input,
@@ -78,8 +81,8 @@ const Chat = () => {
         style={{ height: '100%' }}
         className={`card card-fixed`}
       >
-        <div className="card-header">
-          <h5>Chat</h5>
+        <div className="card-header custom-card-header">
+          <h5 className="card-title custom-card-title"> Chat, interaja com seus colegas.</h5>
         </div>
         <div className="card-body overflow-auto">
           {messages.map((msg, index) => (
@@ -97,15 +100,14 @@ const Chat = () => {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Digite sua mensagem..."
             />
-            <button className="btn btn-primary" onClick={sendMessage}>
-              Enviar
+            <button className="btn btn-primary custom-btn" onClick={sendMessage}>
+              Enviar 
             </button>
           </div>
         </div>
       </div>
     </div>
   );
-  
 };
 
 export default Chat;
