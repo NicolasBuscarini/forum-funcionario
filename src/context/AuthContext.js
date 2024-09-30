@@ -1,6 +1,7 @@
 // src/context/AuthContext.js
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
+import { apiBaseUrl } from '../config';
 
 export const AuthContext = createContext();
 
@@ -12,13 +13,13 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:5011/api/Auth/signin', {
+      const response = await axios.post(`http://${apiBaseUrl}:5011/api/Auth/sign-in`, {
         username,
-        password
+        password,
       });
-      const { token, detalhesDoUsuario } = response.data;
-      setAuthData({ token, username: detalhesDoUsuario.username });
-      localStorage.setItem('authData', JSON.stringify({ token, username: detalhesDoUsuario.username }));
+      const { token, expiration, roles } = response.data.data; // Atualizado para corresponder à resposta
+      setAuthData({ token, username, expiration, roles });
+      localStorage.setItem('authData', JSON.stringify({ token, username, expiration, roles }));
     } catch (error) {
       console.error('Authentication failed:', error);
       throw error; // Re-throw the error to be caught in LoginPage

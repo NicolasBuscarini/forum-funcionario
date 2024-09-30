@@ -4,8 +4,8 @@ import { AuthContext } from '../../context/AuthContext';
 import { Card, Col, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HRPage.css';
-import { Container, Row,   Button } from "react-bootstrap";
-
+import { Button } from "react-bootstrap";
+import { apiBaseUrl } from '../../config';
 
 const HRPage = () => {
     const { authData, logout } = useContext(AuthContext);
@@ -20,7 +20,7 @@ const HRPage = () => {
                     throw new Error('Você precisa estar autenticado para ver os posts.');
                 }
 
-                const response = await axios.get('http://localhost:5011/api/Post/categoria/qualidade', {
+                const response = await axios.get(`http://${apiBaseUrl}:5011/api/Post/categoria/qualidade`, {
                     headers: {
                         Authorization: `Bearer ${authData.token}`
                     }

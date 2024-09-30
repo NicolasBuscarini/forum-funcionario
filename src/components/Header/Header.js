@@ -26,8 +26,8 @@ const Header = () => {
         </div>
 
       </div>
-      <img src="/logo_Lepuge.jpg" alt="Logo Lepuge" className="header-logo1" />
-      <img src="/logo_gemini.jpg" alt="Logo Gemini" className="header-logo2" />
+      {/*<img src="/logo_lepuge.jpg" alt="Logo Lepuge" className="header-logo1" />*/}
+      {/*<img src="/logo_gemini.jpg" alt="Logo Gemini" className="header-logo2" />*/}
 
       {/* Botão de Logout com cor vermelha (danger) à direita */}
       <Button variant="danger" onClick={handleLogout} className="ms-auto">

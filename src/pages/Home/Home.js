@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import BirthdayBoard from "../../components/BirthdayBoard/BirthdayBoard";
 import Chat from "../../components/Chat/Chat";
+import { apiBaseUrl } from '../../config';
+
 
 const Home = () => {
   const { authData, logout } = useContext(AuthContext);
@@ -21,7 +23,7 @@ const Home = () => {
         }
 
         const response = await axios.get(
-          "http://localhost:5011/api/Post/recentes",
+          `http://${apiBaseUrl}:5011/api/Post/recentes`,
           {
             headers: {
               Authorization: `Bearer ${authData.token}`,
@@ -46,27 +48,33 @@ const Home = () => {
   if (error) return <p className="text-danger">Error: {error}</p>;
 
   return (
-    <div className="row">
-      <div className="col-xl-3 mb-2">
-        <BirthdayBoard />
-      </div>
-
-      <div className="container-custom">
-        <h2>Aqui você pode acompanhar as últimas postagens</h2>
-        <div className="list-group">
-          {posts.map((post) => (
-            <div key={post.id} className="list-group-item">
-              <h4>{post.categoria}</h4>
-              <h5 className="mb-1">{post.titulo}</h5>
-              <p className="mb-1">{post.conteudo}</p>
-              <small>
-                Autor: {post.autor} | Criado em:{" "}
-                {new Date(post.dataCriacao).toLocaleString()}
-              </small>
-            </div>
-          ))}
+    <div className="container-fluid mt-4">
+      <div className="row g-3"> {/* Adicionado 'g-3' para espaçamento entre colunas */}
+        {/* Primeira coluna: BirthdayBoard */}
+        <div className="col-xl-3 col-md-3 mb-2">
+          <BirthdayBoard />
         </div>
-        <div className="col-xl-3 mb-2">
+
+        {/* Segunda coluna: Posts */}
+        <div className="col-xl-6 col-md-6 mb-2">
+          <h2>Aqui você pode acompanhar as últimas postagens</h2>
+          <div className="list-group">
+            {posts.data.map((post) => (
+              <div key={post.id} className="list-group-item">
+                <h4>{post.categoria}</h4>
+                <h5 className="mb-1">{post.titulo}</h5>
+                <p className="mb-1">{post.conteudo}</p>
+                <small>
+                  Autor: {post.autor} | Criado em:{" "}
+                  {new Date(post.dataCriacao).toLocaleString()}
+                </small>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Terceira coluna: Chat */}
+        <div className="col-xl-3 col-md-3 mb-2">
           <Chat />
         </div>
       </div>

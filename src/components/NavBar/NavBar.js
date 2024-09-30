@@ -1,10 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFolderOpen, faHome, faPeopleArrows, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
+import { faFolderOpen, faHome, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
 import './NavBar.css';
 import { faCalendarWeek } from '@fortawesome/free-solid-svg-icons/faCalendarWeek';
-import { faPanorama } from '@fortawesome/free-solid-svg-icons/faPanorama';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons/faCirclePlus';
 
 const NavBar = () => {

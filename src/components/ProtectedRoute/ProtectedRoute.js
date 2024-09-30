@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
   const { authData } = useContext(AuthContext);
 
   if (!authData) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/autenticacao" />;
   }
 
   return children;

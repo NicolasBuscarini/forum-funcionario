@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { apiBaseUrl } from '../../config';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
@@ -26,7 +27,7 @@ const CreatePost = () => {
     }
 
     try {
-      const result = await fetch('http://localhost:5011/api/Post', {
+      const result = await fetch(`http://${apiBaseUrl}:5011/api/Post`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${authData.token}`,

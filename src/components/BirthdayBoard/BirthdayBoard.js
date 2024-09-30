@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; // Importa os estilos do calendário
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import './BirthdayBoard.css'; // Arquivo de estilo adicional
+import { apiBaseUrl } from '../../config';
 
 const BirthdayBoard = () => {
   const [birthdays, setBirthdays] = useState([]);
@@ -21,10 +22,10 @@ const BirthdayBoard = () => {
   // Função para buscar os aniversariantes do endpoint
   const fetchBirthdays = async () => {
     try {
-      const response = await fetch('http://localhost:5011/api/Employee/current-month');
-      const data = await response.json();
-      console.log(data);
-      setBirthdays(data);
+      const response = await fetch(`http://${apiBaseUrl}:5011/api/Employee/current-month`);
+      const jsonResponse = await response.json();
+      console.log(jsonResponse.data);
+      setBirthdays(jsonResponse.data);
     } catch (error) {
       console.error('Erro ao buscar aniversariantes:', error);
       // Se der erro no fetch, usamos os dados mockados
