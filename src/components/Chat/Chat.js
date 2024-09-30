@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { AuthContext } from "../../context/AuthContext";
 import './Chat.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { apiBaseUrl } from '../../config';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -17,7 +18,7 @@ const Chat = () => {
     }
 
     // Establish WebSocket connection
-    ws.current = new WebSocket('ws://localhost:8080'); // Adjust the URL as necessary
+    ws.current = new WebSocket(`ws://${apiBaseUrl}:8080`); // Adjust the URL as necessary
 
     ws.current.onopen = () => {
       console.log('WebSocket connection established');
@@ -31,10 +32,8 @@ const Chat = () => {
         if (isJson) {
           const messageObj = JSON.parse(event.data);
           const formattedMessage = `${messageObj.user.name} (${messageObj.user.ip}): ${messageObj.message}`;
-          console.log(`Received message from server: ${formattedMessage}`);
           setMessages((prevMessages) => [...prevMessages, `${formattedMessage}`]);
         } else {
-          console.log(`Received non-JSON message: ${event.data}`);
           setMessages((prevMessages) => [...prevMessages, `Server: ${event.data}`]);
         }
       } catch (error) {
@@ -61,7 +60,7 @@ const Chat = () => {
       const messageObj = {
         user: {
           name: authData.username,
-          ip: "IP Desconhecido", // Substitua por lógica para obter o IP do usuário, se disponível
+          ip: authData.clientIp, // Substitua por lógica para obter o IP do usuário, se disponível
         },
         message: input,
       };

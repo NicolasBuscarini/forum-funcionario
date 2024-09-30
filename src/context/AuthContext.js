@@ -17,9 +17,9 @@ export const AuthProvider = ({ children }) => {
         username,
         password,
       });
-      const { token, expiration, roles } = response.data.data; // Atualizado para corresponder à resposta
-      setAuthData({ token, username, expiration, roles });
-      localStorage.setItem('authData', JSON.stringify({ token, username, expiration, roles }));
+      const { token, expiration, roles, clientIp } = response.data.data; // Atualizado para corresponder à resposta
+      setAuthData({ token, username, expiration, roles, clientIp });
+      localStorage.setItem('authData', JSON.stringify({ token, username, expiration, roles, clientIp }));
     } catch (error) {
       console.error('Authentication failed:', error);
       throw error; // Re-throw the error to be caught in LoginPage

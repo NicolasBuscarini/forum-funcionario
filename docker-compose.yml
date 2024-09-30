@@ -1,5 +1,4 @@
-version: '3.8'
-
+version: '3.8'  # Adicionei a versão do Compose, ajuste conforme necessário
 services:
   react-app:
     build:
@@ -42,3 +41,4 @@ services:
 networks:
   webnet:
     driver: bridge
+

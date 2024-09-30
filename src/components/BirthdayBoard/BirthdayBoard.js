@@ -24,7 +24,6 @@ const BirthdayBoard = () => {
     try {
       const response = await fetch(`http://${apiBaseUrl}:5011/api/Employee/current-month`);
       const jsonResponse = await response.json();
-      console.log(jsonResponse.data);
       setBirthdays(jsonResponse.data);
     } catch (error) {
       console.error('Erro ao buscar aniversariantes:', error);
@@ -36,7 +35,6 @@ const BirthdayBoard = () => {
   // Chama a função fetchBirthdays quando o componente é montado
   useEffect(() => {
     fetchBirthdays();
-    console.log(birthdays);
   }, []);
 
   // Função para marcar as datas de aniversário no calendário

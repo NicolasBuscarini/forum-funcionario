@@ -89,7 +89,7 @@ const Qualidade = () => {
                 <div className="col-lg-6 col-md-6">
                     <h2>Posts da Categoria "Qualidade"</h2>
                     <div className="list-group">
-                        {posts.map(post => (
+                        {posts.data.map(post => (
                             <div key={post.id} className="list-group-item">
                                 <h5 className="mb-1">{post.titulo}</h5>
                                 <p className="mb-1">{post.conteudo}</p>
