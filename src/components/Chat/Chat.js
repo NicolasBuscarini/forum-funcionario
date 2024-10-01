@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { AuthContext } from "../../context/AuthContext";
-import './Chat.css'; 
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import './Chat.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { apiBaseUrl } from '../../config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeading, faPaperPlane } from '@fortawesome/free-solid-svg-icons'; // Ícone faHeading
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const ws = useRef(null); // WebSocket reference
+  const ws = useRef(null);
 
   const { authData } = useContext(AuthContext);
 
@@ -18,23 +20,26 @@ const Chat = () => {
     }
 
     // Establish WebSocket connection
-    ws.current = new WebSocket(`ws://${apiBaseUrl}:8080`); // Adjust the URL as necessary
+    ws.current = new WebSocket(`ws://${apiBaseUrl}:8080`);
 
     ws.current.onopen = () => {
       console.log('WebSocket connection established');
     };
 
     ws.current.onmessage = (event) => {
-      // Handle incoming messages
       try {
-        // Tenta verificar se a mensagem é JSON
         const isJson = event.data.startsWith('{') && event.data.endsWith('}');
         if (isJson) {
           const messageObj = JSON.parse(event.data);
-          const formattedMessage = `${messageObj.user.name} (${messageObj.user.ip}): ${messageObj.message}`;
-          setMessages((prevMessages) => [...prevMessages, `${formattedMessage}`]);
+          const formattedMessage = {
+            name: messageObj.user.name,
+            ip: messageObj.user.ip,
+            message: messageObj.message,
+            time: new Date().toLocaleTimeString()
+          };
+          setMessages((prevMessages) => [formattedMessage, ...prevMessages]); // Inverte a ordem das mensagens
         } else {
-          setMessages((prevMessages) => [...prevMessages, `Server: ${event.data}`]);
+          setMessages((prevMessages) => [{ message: `Server: ${event.data}`, time: new Date().toLocaleTimeString() }, ...prevMessages]);
         }
       } catch (error) {
         console.error('Erro ao processar a mensagem recebida:', error);
@@ -49,10 +54,10 @@ const Chat = () => {
     return () => {
       ws.current.close(); // Clean up WebSocket connection on component unmount
     };
-  }, [authData]); // Dependência authData para reestabelecer a conexão WebSocket se necessário
+  }, [authData]);
 
   const addMessage = (message) => {
-    setMessages((prevMessages) => [...prevMessages, message]);
+    setMessages((prevMessages) => [message, ...prevMessages]); // Inverte a ordem das mensagens
   };
 
   const sendMessage = () => {
@@ -60,49 +65,62 @@ const Chat = () => {
       const messageObj = {
         user: {
           name: authData.username,
-          ip: authData.clientIp, // Substitua por lógica para obter o IP do usuário, se disponível
+          ip: authData.clientIp,
         },
         message: input,
       };
-  
+
       const messageJson = JSON.stringify(messageObj);
-      console.log(messageJson);
-      ws.current.send(messageJson); // Send the JSON message through WebSocket
+      ws.current.send(messageJson);
       setInput(''); // Clear input field after sending
     } else {
       console.error('User information is missing or input is empty');
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      sendMessage();
+    }
+  };
+
   return (
     <div className="chat-container">
-      <div
-        style={{ height: '100%' }}
-        className={`card card-fixed`}
-      >
+      <div className={`card card-fixed d-flex flex-column`}>
+        
+        {/* Título do chat no topo */}
         <div className="card-header custom-card-header">
           <h5 className="card-title custom-card-title"> Chat, interaja com seus colegas.</h5>
         </div>
-        <div className="card-body overflow-auto">
-          {messages.map((msg, index) => (
-            <div key={index} className="alert alert-secondary p-2">
-              {msg}
-            </div>
-          ))}
-        </div>
-        <div className="card-footer">
+
+        {/* Campo de envio de mensagens e imagens */}
+        <div className="card-footer order-1">
           <div className="input-group">
             <input
               type="text"
               className="form-control"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyPress={handleKeyPress}
               placeholder="Digite sua mensagem..."
             />
             <button className="btn btn-primary custom-btn" onClick={sendMessage}>
-              Enviar 
+              <FontAwesomeIcon icon={faPaperPlane} className="me-2" /> Enviar
             </button>
           </div>
+        </div>
+
+        {/* Área de mensagens com rolagem */}
+        <div className="card-body overflow-auto message-container order-2">
+          {messages.map((msg, index) => (
+            <div key={index} className={`alert ${msg.name === authData.username ? 'alert-primary' : 'alert-secondary'} p-2`}>
+            <strong>{msg.name} ({msg.ip})</strong><br />
+            <span>{msg.message}</span>
+            <div className="text-end">
+              <small>{msg.time}</small>
+            </div>
+          </div>
+          ))}
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { apiBaseUrl } from '../../config';
 
+
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');

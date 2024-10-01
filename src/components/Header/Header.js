@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { AuthContext } from "../../context/AuthContext";
 import { Button } from "react-bootstrap"; 
 import "./Header.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeading, faPaperPlane } from '@fortawesome/free-solid-svg-icons'; // Ícone faHeading
+import { faDoorOpen } from '@fortawesome/free-solid-svg-icons/faDoorOpen';
 
 const Header = () => {
   const { authData, logout } = useContext(AuthContext); // Adicionando logout ao contexto
@@ -31,8 +34,9 @@ const Header = () => {
 
       {/* Botão de Logout com cor vermelha (danger) à direita */}
       <Button variant="danger" onClick={handleLogout} className="ms-auto">
-        Sair
+        <FontAwesomeIcon icon={faDoorOpen} className="me-2" />Sair
       </Button>
+
     </header>
   );
 };

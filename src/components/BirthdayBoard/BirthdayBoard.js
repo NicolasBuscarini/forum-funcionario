@@ -4,6 +4,9 @@ import 'react-calendar/dist/Calendar.css'; // Importa os estilos do calendário
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import './BirthdayBoard.css'; // Arquivo de estilo adicional
 import { apiBaseUrl } from '../../config';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
 
 const BirthdayBoard = () => {
   const [birthdays, setBirthdays] = useState([]);
@@ -69,15 +72,19 @@ const BirthdayBoard = () => {
     <Container className="birthday-container">
       <Row>
         <Col className="d-flex justify-content-center">
-          <h2 className="birthday-title text-center">Aniversariantes de {selectedDate.toLocaleString('default', { month: 'long' })}</h2>
+          <h2 className="birthday-title text-center">
+            <i className="bi bi-cake"></i> {/* Ícone de bolo com margem direita */}
+            Aniversariantes de {selectedDate.toLocaleString('default', { month: 'long' })}
+          </h2>
         </Col>
       </Row>
+
       <Row>
         <Col className="d-flex justify-content-center">
           <Calendar
             onChange={setSelectedDate}
             value={selectedDate}
-            tileContent={tileContent}
+            tileContent={tileContent}  
             minDate={firstDayOfMonth} // Limita ao primeiro dia do mês
             maxDate={lastDayOfMonth} // Limita ao último dia do mês
             prevLabel={null} // Remove o botão de navegação anterior

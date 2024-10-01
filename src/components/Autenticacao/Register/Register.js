@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { apiBaseUrl } from '../../../config';
-import { FaUser, FaLock } from 'react-icons/fa'; // Ícones de usuário e senha
+import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa'; // Ícones de usuário, senha e olho
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Register.css'; // Arquivo CSS personalizado
 
@@ -9,6 +9,7 @@ const Register = ({ username }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false); // Estado para controlar visibilidade da senha
 
     const validatePassword = (password) => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
@@ -66,23 +67,37 @@ const Register = ({ username }) => {
             <div className="form-group position-relative mt-3">
                 <FaLock className="input-icon" /> {/* Ícone de senha */}
                 <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'} // Alterna entre 'text' e 'password'
                     className="form-control custom-input pl-5"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Senha"
                 />
+                <span 
+                    className="password-toggle-icon" 
+                    onClick={() => setShowPassword(!showPassword)} // Alterna visibilidade
+                    style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer' }}
+                >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Alterna ícones */}
+                </span>
             </div>
 
             <div className="form-group position-relative mt-3">
                 <FaLock className="input-icon" /> {/* Ícone de confirmação de senha */}
                 <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'} // Mesmo comportamento para a confirmação
                     className="form-control custom-input pl-5"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Confirme a senha"
                 />
+                <span 
+                    className="password-toggle-icon" 
+                    onClick={() => setShowPassword(!showPassword)} // Alterna visibilidade
+                    style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer' }}
+                >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Alterna ícones */}
+                </span>
             </div>
 
             <button className="btn btn-primary btn-block custom-btn mt-4" onClick={handleRegister}>
