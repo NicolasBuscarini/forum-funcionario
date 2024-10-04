@@ -3,6 +3,8 @@ import axios from 'axios';
 import { apiBaseUrl } from '../../../config';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa Bootstrap
 import { FaUser } from 'react-icons/fa'; // Importa ícone de usuário (FontAwesome)
+import CustomButton from '../../CustomButton/CustomButton';
+import CustomInput from '../../CustomInput/CustomInput';
 
 const UsernameInput = ({ onUserVerified }) => {
   const [username, setUsername] = useState('');
@@ -31,26 +33,21 @@ const UsernameInput = ({ onUserVerified }) => {
 
   return (
     <div className="d-flex flex-column align-items-center mt-4">
-      <h3 className="text-center">INTRANET</h3>
-      <p className="text-center text-primary">Boas-vindas</p>
-      <div className="input-group mb-3" style={{ maxWidth: '300px' }}>
-        <span className="input-group-text">
-          <FaUser /> {/* Ícone de usuário */}
-        </span>
-        <input
-          type="text"
-          className="form-control"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Digite seu nome"
-        />
-      </div>
-      <button 
-        className="btn btn-secondary" 
-        onClick={handleUsernameCheck} 
-        style={{ width: '300px' }}>
-        Entrar
-      </button>
+
+      <CustomInput 
+        type="text"
+        icon={<FaUser />} // Ícone de usuário
+        placeholder="Digite seu nome"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+
+      <CustomButton
+        label="Entrar" // Texto do botão
+        onClick={handleUsernameCheck} // Função de clique
+        className="mt-4" // Classe adicional
+      />
+      
       {error && <div className="alert alert-danger mt-3">{error}</div>}
     </div>
   );

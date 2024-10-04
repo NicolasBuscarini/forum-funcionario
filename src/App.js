@@ -15,14 +15,18 @@ import DocPg from "./pages/Doc/DocPg.js";
 import VideoPage from "./pages/VideoPage/VideoPg";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import CreatePost from "./pages/CreatePost/CreatePost.js";
 import Qualidade from "./pages/Qualidade/Qualidade.js";
 import Autenticacao from "./pages/Autenticacao/Autenticacao.js";
+import Postar from "./pages/Postar/Postar.js";
+import EsqueceuSenha from "./pages/EsqueceuSenha/EsqueceuSenha.js";
 
 const Layout = ({ children }) => {
   const location = useLocation(); // Hook agora está dentro do Router
 
   const isAutenticacaoPage = location.pathname === "/autenticacao"; // Verifica se é a rota de login
+
+ 
+ 
 
   return (
     <>
@@ -65,7 +69,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Qualidade"
+              path="/qualidade"
               element={
                 <ProtectedRoute>
                   <Qualidade />
@@ -73,7 +77,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Documentos"
+              path="/documentos"
               element={
                 <ProtectedRoute>
                   <DocPg />
@@ -81,7 +85,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Fique por Dentro"
+              path="/fique-por-dentro"
               element={
                 <ProtectedRoute>
                   <VideoPage />
@@ -89,7 +93,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Suporte"
+              path="/suporte"
               element={
                 <ProtectedRoute>
                   <Home />
@@ -97,13 +101,14 @@ const App = () => {
               }
             />
             <Route
-              path="/Postar"
+              path="/postar"
               element={
                 <ProtectedRoute>
-                  <CreatePost />
+                  <Postar />
                 </ProtectedRoute>
               }
             />
+            <Route path="/esqueceu-senha"  element={<EsqueceuSenha />} />
           </Routes>
         </Layout>
       </Router>

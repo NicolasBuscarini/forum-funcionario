@@ -16,25 +16,28 @@ const NavBar = () => {
             <span className="icon"><FontAwesomeIcon icon={faHome} /></span>
             <span className="text">Home</span>
            </NavLink>
-           <NavLink className="nav-link" exact to="/Rh">
+           <NavLink className="nav-link" exact to="/rh">
             <span className="icon"><FontAwesomeIcon icon={faPeopleGroup} /></span>
             <span className="text">Recursos Humanos</span>
            </NavLink>
 
-           <NavLink className="nav-link" exact to="/Qualidade">
+           <NavLink className="nav-link" exact to="/qualidade">
             <span className="icon"><FontAwesomeIcon icon={faCirclePlus} /></span>
             <span className="text">Qualidade</span>
            </NavLink>
-          <NavLink className="nav-link" exact to="/Documentos">
+          <NavLink className="nav-link" exact to="/documentos">
             <span className="icon"><FontAwesomeIcon icon={faFolderOpen} /></span>
             <span className="text">Documentos</span>
            </NavLink>
-          <NavLink className="nav-link" exact to="/Fique por Dentro">
+          <NavLink className="nav-link" exact to="/fique-por-dentro">
             <span className="icon"><FontAwesomeIcon icon={faCalendarWeek} /></span>
             <span className="text">Fique por Dentro</span>
            </NavLink>
-          <NavLink className="nav-link" to="/Suporte">
+          <NavLink className="nav-link" to="/suporte">
             Suporte
+          </NavLink>
+          <NavLink className="nav-link" to="/postar">
+            postar
           </NavLink>
         </div>
       </div>

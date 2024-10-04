@@ -31,6 +31,8 @@
     border-color: #ced4da;
     border-radius: 25px;
     height: 45px;
+    width: 100%;
+
   }
   
   .custom-btn:hover {

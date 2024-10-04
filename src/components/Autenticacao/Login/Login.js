@@ -1,65 +1,71 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext'; 
-import { FaUser, FaLock, FaEyeSlash } from 'react-icons/fa'; // Ícones de usuário, senha e olho
+import { FaUser, FaLock, FaEyeSlash } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Login.css'; // Adicionar o CSS customizado
+import './Login.css'; 
+import CustomButton from '../../CustomButton/CustomButton';
+import CustomInput from '../../CustomInput/CustomInput';
 
-const Login = ({ username }) => {
+const Login = ({ username, onForgotPassword }) => { // Recebe a prop onForgotPassword
   const { login } = useContext(AuthContext);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // Para alternar a visualização da senha
-  const navigate = useNavigate(); // Para redirecionamento
+  const [showPassword, setShowPassword] = useState(false); 
+  const navigate = useNavigate(); 
 
   const handleLogin = async () => {
-    console.log(`[Login] Tentando login com usuário: ${username}`); // Log de tentativa de login
+    console.log(`[Login] Tentando login com usuário: ${username}`);
     try {
-      await login(username, password); // Usar a função de login do AuthContext
-      console.log(`[Login] Login bem-sucedido, redirecionando para a Home.`); // Log de sucesso
-      navigate('/'); // Redirecionar para a página inicial
+      await login(username, password); 
+      console.log(`[Login] Login bem-sucedido, redirecionando para a Home.`);
+      navigate('/'); 
     } catch (error) {
-      setError('Erro ao realizar login.');
-      console.error(`[Login] Erro ao realizar login para o usuário: ${username}, Erro: ${error}`); // Log de erro
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error.message || 'Erro ao realizar login.');
+        console.error(`[Login] Erro da API: ${error.response.data.error.message}`);
+      } else {
+        setError('Algo deu errado no serviço de autenticação. Contate o administrador.');
+        console.error(`[Login] Erro ao realizar login: ${error}`);
+      }
     }
   };
 
   return (
     <div className="login-container">
-      <h1 className="title">INTRANET</h1>
-      <h3 className="subtitle">Boas-vindas</h3>
+     
+      <CustomInput 
+        type="text"
+        icon={<FaUser />} // Ícone de usuário
+        placeholder="Digite seu nome"
+        value={username}
+        readOnly // Campo somente leitura
+      />
 
-      <div className="form-group position-relative mt-4">
-        <FaUser className="input-icon" /> {/* Ícone de usuário */}
-        <input
-          type="text"
-          className="form-control custom-input pl-5" // Ajuste do padding para ícone
-          value={username}
-          readOnly // Campo somente leitura
-          placeholder="Digite seu nome"
-        />
-      </div>
+      <CustomInput 
+        isPassword={true} // Define que é um campo de senha
+        icon={<FaLock />} // Ícone de senha
+        placeholder="Informe sua senha"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-      <div className="form-group position-relative mt-3">
-        <FaLock className="input-icon" /> {/* Ícone de senha */}
-        <input
-          type={showPassword ? "text" : "password"} // Alternar entre texto e senha
-          className="form-control custom-input pl-5" // Ajuste do padding para ícone
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Informe sua senha"
-        />
-        <FaEyeSlash
-          className="password-toggle-icon"
-          onClick={() => setShowPassword(!showPassword)} // Alternar visualização
-        />
-      </div>
-
-      <button className="btn btn-primary btn-block custom-btn mt-4" onClick={handleLogin}>
-        Entrar
-      </button>
+      <CustomButton
+        label="Entrar" // Texto do botão
+        onClick={handleLogin} // Função de clique
+        className="mt-4" // Classe adicional
+      />
 
       {error && <div className="alert alert-danger mt-3">{error}</div>}
+
+      <div className="forgot-password mt-3">
+        <button 
+          className="forgot-password-link btn btn-link" 
+          onClick={onForgotPassword} // Chama a função onForgotPassword
+        >
+          Esqueceu a senha?
+        </button>
+      </div>
     </div>
   );
 };

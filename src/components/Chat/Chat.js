@@ -4,7 +4,7 @@ import './Chat.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { apiBaseUrl } from '../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeading, faPaperPlane } from '@fortawesome/free-solid-svg-icons'; // Ícone faHeading
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -87,40 +87,41 @@ const Chat = () => {
   return (
     <div className="chat-container">
       <div className={`card card-fixed d-flex flex-column`}>
-        
+
         {/* Título do chat no topo */}
         <div className="card-header custom-card-header">
-          <h5 className="card-title custom-card-title"> Chat, interaja com seus colegas.</h5>
+          <h5 className="card-title custom-card-title">Chat, interaja com seus colegas.</h5>
+        </div>
+
+        {/* Área de mensagens com rolagem */}
+        <div className="card-body overflow-auto flex-grow-1 message-container order-1">
+          {messages.map((msg, index) => (
+            <div key={index} className={`alert ${msg.name === authData.username ? 'alert-primary' : 'alert-secondary'} p-2`}>
+              <strong>{msg.name} ({msg.ip})</strong><br />
+              <span>{msg.message}</span>
+              <div className="text-end">
+                <small>{msg.time}</small>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Campo de envio de mensagens e imagens */}
-        <div className="card-footer order-1">
-          <div className="input-group">
+        <div className="card-footer order-2">
+          <div className="d-flex">
             <input
               type="text"
-              className="form-control"
+              className="form-control me-2"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Digite sua mensagem..."
             />
-            <button className="btn btn-primary custom-btn" onClick={sendMessage}>
-              <FontAwesomeIcon icon={faPaperPlane} className="me-2" /> Enviar
+            <button className="btn btn-primary custom-btn d-flex align-items-center justify-content-center" style={{ width: "100px" }} onClick={sendMessage}>
+              <FontAwesomeIcon icon={faPaperPlane} className="me-2" /> 
+              <span>Enviar</span>
             </button>
           </div>
-        </div>
-
-        {/* Área de mensagens com rolagem */}
-        <div className="card-body overflow-auto message-container order-2">
-          {messages.map((msg, index) => (
-            <div key={index} className={`alert ${msg.name === authData.username ? 'alert-primary' : 'alert-secondary'} p-2`}>
-            <strong>{msg.name} ({msg.ip})</strong><br />
-            <span>{msg.message}</span>
-            <div className="text-end">
-              <small>{msg.time}</small>
-            </div>
-          </div>
-          ))}
         </div>
       </div>
     </div>
