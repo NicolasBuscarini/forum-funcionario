@@ -79,6 +79,10 @@ small {
   flex-direction: column;
 }
 
+.icon-spacing {
+  margin-right: 8px; /* Define o espaçamento entre o ícone e o texto */
+}
+
 .card-body {
 
   flex-grow: 1;

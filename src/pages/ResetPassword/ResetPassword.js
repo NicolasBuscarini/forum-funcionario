@@ -1,54 +1,93 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import CustomInput from './CustomInput'; // Importando o componente de input personalizado
-import CustomButton from './CustomButton'; // Importando o componente de botão personalizado
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useLocation, useNavigate  } from 'react-router-dom';
+import { apiBaseUrl } from '../../config';
+import { FaLock, FaUser } from 'react-icons/fa';
+import CustomInput from '../../components/CustomInput/CustomInput';
+import CustomButton from '../../components/CustomButton/CustomButton';
+import "./ResetPassword.css"
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 
 const ResetPassword = () => {
-  const { token, username } = useParams(); // Obtendo os parâmetros da URL
+  const navigate = useNavigate();
+
+  const query = useQuery();
+  const token = query.get('token');
+  const username = query.get('username');
+  
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Log para início do processo
+    console.log('Iniciando processo de redefinição de senha', { username, token });
+
+    // Verifica se as senhas coincidem
     if (password !== confirmPassword) {
+      console.error("As senhas não coincidem.");
       setError("As senhas não coincidem.");
       return;
     }
 
-  const response = await fetch(`http://${apiBaseUrl}:5011/api/Auth/reset-password`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'accept': 'text/plain',
-      },
-      body: JSON.stringify({
-        username: username,
-        token: token,
-        password: password,
-      }),
-    });
+    // Log antes de enviar a requisição
+    console.log('Enviando requisição de redefinição de senha para API', { username, token });
 
-    const data = await response.json();
+    try {
+      const response = await fetch(`http://${apiBaseUrl}:5011/api/Auth/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'accept': 'text/plain',
+        },
+        body: JSON.stringify({
+          username: username,
+          token: token,
+          password: password,
+        }),
+      });
 
-    if (data.error) {
-      setError(data.error.message); // Exibindo mensagem de erro
-    } else {
-      // Lógica para redirecionar ou mostrar mensagem de sucesso
-      alert('Senha redefinida com sucesso!');
+      // Log de resposta da API
+      console.log('Resposta recebida da API:', response);
+
+      const data = await response.json();
+
+      if (data.error) {
+        // Log de erro vindo da API
+        console.error('Erro na redefinição de senha:', data.error);
+        setError(data.error.message);
+      } else {
+        // Log de sucesso
+        console.log('Senha redefinida com sucesso para o usuário:', username);
+        alert('Senha redefinida com sucesso!');
+        // Redirecionar para /autenticacao após o alerta
+        navigate('/autenticacao');
+      }
+    } catch (error) {
+      // Log de erro de exceção
+      console.error('Erro ao realizar a requisição de redefinição de senha:', error);
+      setError('Ocorreu um erro ao tentar redefinir a senha. Tente novamente.');
     }
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container autenticacao-container">
+      <h1 className="title">INTRANET</h1>
       <h2>Redefinir Senha</h2>
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Usuário</label>
-          <input type="text" value={username} readOnly className="form-control" />
-        </div>
+        <CustomInput 
+          type="text"
+          icon={<FaUser />} // Ícone de usuário
+          placeholder="Usuário"
+          value={username}
+          readOnly // Campo somente leitura
+        />
+
         <CustomInput 
           type="password" 
           placeholder="Nova Senha" 
@@ -57,7 +96,7 @@ const ResetPassword = () => {
           isPassword={true} 
           icon={<FaLock />} 
         />
-        <CustomInput 
+        <CustomInput
           type="password" 
           placeholder="Confirmar Senha" 
           value={confirmPassword} 

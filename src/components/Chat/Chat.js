@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { apiBaseUrl } from '../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -89,10 +90,14 @@ const Chat = () => {
       <div className={`card card-fixed d-flex flex-column`}>
 
         {/* Título do chat no topo */}
-        <div className="card-header custom-card-header">
-          <h5 className="card-title custom-card-title">Chat, interaja com seus colegas.</h5>
+       <div className="card-header custom-card-header">
+          <h2 className="card-title custom-card-title text-center">
+            <i className="bi bi-chat icon-spacing"></i>
+            Chat, interaja com seus colegas.
+          </h2>
         </div>
 
+    
         {/* Área de mensagens com rolagem */}
         <div className="card-body overflow-auto flex-grow-1 message-container order-1">
           {messages.map((msg, index) => (

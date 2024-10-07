@@ -23,14 +23,13 @@ const Autenticacao = () => {
   return (
     <div className="container autenticacao-container">
       <h1 className="title">INTRANET</h1>
-      {/* <h3 className="subtitle">Boas-vindas</h3> */}
 
       {!isForgotPassword && !status && <UsernameInput onUserVerified={handleUserVerified} />}
       {!isForgotPassword && status === 'USUARIO_REGISTRADO' && (
-        <Login username={username} onForgotPassword={handleForgotPassword} /> // Passa a função para exibir ForgotPassword
+        <Login username={username} onForgotPassword={handleForgotPassword} /> 
       )}
       {!isForgotPassword && status === 'USUARIO_NAO_REGISTRADO' && <Register username={username} />}
-      {isForgotPassword && <ForgotPassword username={username} />} {/* Exibir apenas ForgotPassword */}
+      {isForgotPassword && <ForgotPassword username={username} />} 
     </div>
   );
 };

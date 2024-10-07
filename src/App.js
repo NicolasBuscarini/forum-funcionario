@@ -18,29 +18,30 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Qualidade from "./pages/Qualidade/Qualidade.js";
 import Autenticacao from "./pages/Autenticacao/Autenticacao.js";
 import Postar from "./pages/Postar/Postar.js";
-import EsqueceuSenha from "./pages/EsqueceuSenha/EsqueceuSenha.js";
+import ResetPassword from "./pages/ResetPassword/ResetPassword.js";
 
 const Layout = ({ children }) => {
-  const location = useLocation(); // Hook agora está dentro do Router
+  const location = useLocation();
 
-  const isAutenticacaoPage = location.pathname === "/autenticacao"; // Verifica se é a rota de login
-
- 
- 
+  // Verifica se a rota atual é "/autenticacao" ou "/reset-password"
+  const isSpecialPage =
+    location.pathname === "/autenticacao" ||
+    location.pathname.startsWith("/reset-password");
 
   return (
     <>
-      {!isAutenticacaoPage && <Header />}
-      {!isAutenticacaoPage && <NavBar />}
+      {!isSpecialPage && <Header />}
+      {!isSpecialPage && <NavBar />}
 
       <div className="container-fluid mt-4 mb-4">
         {children} {/* Renderiza os componentes dentro do Layout */}
       </div>
 
-      {!isAutenticacaoPage && <Footer />}
+      {!isSpecialPage && <Footer />}
     </>
   );
 };
+
 
 const App = () => {
   return (
@@ -108,7 +109,8 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-            <Route path="/esqueceu-senha"  element={<EsqueceuSenha />} />
+
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
         </Layout>
       </Router>
