@@ -5,8 +5,9 @@ import { AuthContext } from "../../context/AuthContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import BirthdayBoard from "../../components/BirthdayBoard/BirthdayBoard";
-import PhoneList from "../../components/PhoneList/PhoneList"; // Importe o novo componente
+import PhoneList from "../../components/PhoneList/PhoneList";
 import Chat from "../../components/Chat/Chat";
+import PhotoGallery from "../../components/PhotoGallery/PhotoGallery"; // Importando o novo componente
 import { apiBaseUrl } from '../../config';
 
 const Home = () => {
@@ -33,7 +34,7 @@ const Home = () => {
         setPosts(response.data);
       } catch (err) {
         if (err.response && err.response.status === 401) {
-          logout(); // Log out if unauthorized
+          logout();
         }
         setError(err.message);
       } finally {
@@ -50,10 +51,11 @@ const Home = () => {
   return (
     <div className="container-fluid mt-4">
       <div className="row g-3">
-        {/* Primeira coluna: BirthdayBoard */}
+        {/* Primeira coluna: BirthdayBoard, PhotoGallery e PhoneList */}
         <div className="col-xl-3 col-md-3 mb-2">
           <BirthdayBoard />
-          <PhoneList /> {/* Adicione o novo componente aqui */}
+          <PhotoGallery className="mt-3" /> {/* Adicionando margem superior aqui */}
+          <PhoneList /> {/* O PhoneList ficará abaixo da galeria */}
         </div>
 
         {/* Segunda coluna: Posts */}
@@ -62,7 +64,6 @@ const Home = () => {
             <i className="bi bi-file-post"></i>
             Aqui você pode acompanhar as últimas postagens
           </h2>
-
           <div className="list-group">
             {posts.data.map((post) => (
               <div key={post.id} className="list-group-item">

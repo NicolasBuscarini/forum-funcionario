@@ -73,7 +73,7 @@ const BirthdayBoard = () => {
       <Row>
         <Col className="d-flex justify-content-center">
           <h2 className="birthday-title text-center">
-            <i className="bi bi-cake"></i> {/* Ícone de bolo com margem direita */}
+            <i className="bi bi-cake2-fill"></i> {/* Ícone de bolo com margem direita */}
             Aniversariantes de {selectedDate.toLocaleString('default', { month: 'long' })}
           </h2>
         </Col>

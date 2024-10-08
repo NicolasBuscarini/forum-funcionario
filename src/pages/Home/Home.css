@@ -1,14 +1,14 @@
 .container-custom {
   padding: 15px;
-  border: 1px solid #425b64; /* Bordas em laranja */
+  border: 1px solid #b0756b; /* Bordas em laranja */
   color: #939393;
-  background-color: #fafafa; /* Fundo claro */
+  background-color: #f7f1f0; /* Fundo claro */
   border-radius: 8px; /* Bordas arredondadas */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 h2 {
-  color: #425b64; /* Cor do título */
+  color: #b0756b; /* Cor do título */
   font-weight: bold; /* Negrito */
   margin-bottom: 15px; /* Espaço abaixo do título */
 }
@@ -49,7 +49,7 @@ small {
   padding: 20px;
   border: 1px solid #B06A00; /* Bordas em laranja */
   border-radius: 8px;
-  background-color: #FFCB7D; /* Fundo em tom claro de laranja */  
+  background-color: #fcd08e; /* Fundo em tom claro de laranja */  
   color: #dc6700; /* Texto em tom escuro de laranja */
   font-size: 15px ;
   text-align: left;
@@ -111,13 +111,13 @@ small {
 }
 
 .custom-btn {
-  background-color: #6FD169 !important;
-  color: #1D541A !important;
+  background-color: #cae3c4 !important;
+  color: #569546 !important;
 }
 
 .custom-card-header {
-  background-color: #6FD169 !important;
-  color: #1D541A !important;
+  background-color: #cae3c4 !important;
+  color: #569546 !important;
 }
 
 .custom-card-title {
@@ -139,4 +139,51 @@ small {
   border-radius: 10px;
   margin-bottom: 10px;
   text-align: right; /* Alinha o texto à direita para destacar que é uma mensagem enviada */
+}
+
+.photo-gallery {
+  transition: background-color 0.3s;
+  border: 1px solid #007bff; /* Altere a cor da borda conforme necessário */
+  border-radius: 8px; /* Borda arredondada opcional */
+  padding: 16px; /* Espaçamento interno */
+  background-color: #eaf4f7; /* Cor de fundo opcional */
+  margin-bottom: 16px; /* Espaço inferior para separar do BirthdayBoard */
+  margin-top: 16px; /* Adiciona espaço acima do PhotoGallery */
+ 
+}
+
+
+.photo-gallery:hover {
+  background-color: #e9ecef;
+}
+
+.btn {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.photo-gallery-title{
+
+  color: #56a7bf;
+}
+
+.phonelist-gallery-title{
+
+  color:#7f94a9;
+}
+
+
+.phonelist-gallery{
+
+  background-color: #f9fafb;
+  color: #939393;
+  padding: 15px;
+  border-radius: 8px; /* Bordas arredondadas */
+
+
+
 }

@@ -45,8 +45,11 @@ const PhoneList = () => {
 
   return (
     <div className="card mt-3">
-      <div className="card-header">
-        <h5>Lista de Ramais</h5>
+      <div className="phonelist-gallery">
+      <h2 className="phonelist-gallery-title text-center">
+      <i className="bi bi-telephone"></i> {/* Ícone de bolo com margem direita */}
+        Lista de Ramais
+      </h2>
       </div>
       <ul className="list-group list-group-flush">
         {contacts.map((contact) => (
