@@ -1,4 +1,3 @@
-// PhotoGallery.js
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -30,26 +29,30 @@ const PhotoGallery = () => {
 
   return (
     <div className="photo-gallery">
-         
-      <h2 className="photo-gallery-title text-center">
-      <i className="bi bi-card-image"></i> {/* Ícone de bolo com margem direita */}
+      <h2 className="photo-gallery-title text-center mb-4">
+        <i className="bi bi-card-image"></i> {/* Ícone de imagem */}
         Galeria de Fotos
       </h2>
-      <div className="text-center">
+      <div className="text-center mb-4">
         <img
           src={photos[currentIndex]}
           alt={`Foto ${currentIndex + 1}`}
-          className="img-fluid mb-3" // Use mb-3 para margem inferior
-          style={{ height: "300px", width: "400px", objectFit: "cover" }} // Defina altura e largura fixas
+          className="img-fluid mb-3" // Usa mb-3 para margem inferior
+          style={{
+            height: "400px", // Aumente a altura da imagem
+            width: "100%", // Defina largura como 100% para ocupar mais espaço
+            maxWidth: "800px", // Limite a largura máxima
+            objectFit: "cover" // Cobre o espaço mantendo a proporção
+          }}
         />
-        <div>
-          <button className="btn btn-outline-primary me-2" onClick={handlePrev}>
-            <i className="bi bi-arrow-left"></i> Anterior
-          </button>
-          <button className="btn btn-outline-primary" onClick={handleNext}>
-            Próximo <i className="bi bi-arrow-right"></i>
-          </button>
-        </div>
+      </div>
+      <div className="text-center">
+        <button className="btn btn-outline-primary me-2" onClick={handlePrev}>
+          <i className="bi bi-arrow-left"></i> Anterior
+        </button>
+        <button className="btn btn-outline-primary" onClick={handleNext}>
+          Próximo <i className="bi bi-arrow-right"></i>
+        </button>
       </div>
     </div>
   );

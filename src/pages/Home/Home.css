@@ -166,10 +166,21 @@ small {
   color: #fff;
 }
 
-.photo-gallery-title{
 
+.photo-gallery {
+  padding: 20px; /* Adiciona espaçamento interno ao redor da galeria */
+}
+
+.photo-gallery-title {
+  font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+  
   color: #56a7bf;
 }
+
+.img-fluid {
+  border-radius: 8px; /* Adiciona bordas arredondadas às imagens */
+}
+
 
 .phonelist-gallery-title{
 
@@ -185,5 +196,10 @@ small {
   border-radius: 8px; /* Bordas arredondadas */
 
 
+
+}
+.phonelist-gallery{
+
+  border: 1px solid #eff2f5; /* Altere a cor da borda conforme necessário */
 
 }
