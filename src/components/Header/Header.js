@@ -1,15 +1,16 @@
+// Header.js
 import React, { useContext, useState } from 'react';
 import { AuthContext } from "../../context/AuthContext";
-import { Button, Modal, Form } from "react-bootstrap"; 
+import { Button } from "react-bootstrap"; 
 import "./Header.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDoorOpen, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import UserPhoto from '../UserPhoto/UserPhoto'; // Importa o novo componente
+import EditProfile from '../EditProfile/EditProfile'; // Importa o novo componente
 
 const Header = () => {
   const { authData, logout } = useContext(AuthContext);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [newPhoto, setNewPhoto] = useState(null);
-  const [newPassword, setNewPassword] = useState(""); // Novo campo para a senha
 
   const handleLogout = () => {
     logout();
@@ -18,22 +19,10 @@ const Header = () => {
   const handleShowEditModal = () => setShowEditModal(true);
   const handleCloseEditModal = () => setShowEditModal(false);
 
-  const handlePhotoChange = (e) => {
-    setNewPhoto(e.target.files[0]); // Captura a nova foto selecionada
-  };
-
-  const handlePasswordChange = (e) => {
-    setNewPassword(e.target.value); // Captura a nova senha
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aqui você enviaria os dados para o backend para salvar a nova foto e senha
-    console.log("Nome:", authData?.username);
-    console.log("E-mail:", authData?.email);
+  const handleProfileSubmit = (newPhoto, newPassword) => {
+    // Lógica para salvar a nova foto e senha
     console.log("Nova foto:", newPhoto);
     console.log("Nova senha:", newPassword);
-    handleCloseEditModal(); // Fecha o modal após o envio
   };
 
   return (
@@ -52,11 +41,7 @@ const Header = () => {
 
         {/* Quadro para a foto do funcionário */}
         <div className="employee-photo-container d-flex flex-column align-items-center">
-          <img
-            src={authData?.photo || '/default-photo.png'}
-            alt="Foto do Funcionário"
-            className="employee-photo"
-          />
+          <UserPhoto authData={authData} /> {/* Usa o componente UserPhoto */}
           <Button variant="link" className="p-0 mt-2" onClick={handleShowEditModal}>
             <FontAwesomeIcon icon={faUserEdit} className="me-2" />
             Editar Perfil
@@ -70,66 +55,26 @@ const Header = () => {
       </header>
 
       {/* Modal de Edição de Perfil */}
-      <Modal show={showEditModal} onHide={handleCloseEditModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Editar Perfil</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="username">
-              <Form.Label>Nome</Form.Label>
-              <Form.Control
-                type="text"
-                value={formatName(authData?.username)}
-                readOnly // O campo de nome é apenas leitura
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="email">
-              <Form.Label>E-mail</Form.Label>
-              <Form.Control
-                type="email"
-                value={authData?.email} // Exibe o e-mail do usuário
-                readOnly // O campo de e-mail é apenas leitura
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="newPassword">
-              <Form.Label>Nova Senha</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Digite a nova senha"
-                value={newPassword}
-                onChange={handlePasswordChange}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formFile">
-              <Form.Label>Atualizar Foto</Form.Label>
-              <Form.Control type="file" onChange={handlePhotoChange} />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Salvar Alterações
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
+      <EditProfile
+        show={showEditModal}
+        handleClose={handleCloseEditModal}
+        authData={authData}
+        onSubmit={handleProfileSubmit} // Passa a função de submissão
+      />
     </>
   );
 };
 
-function formatName(name) {
+// Função para formatar o nome
+const formatName = (name) => {
   if (!name) {
-    return ""; // Retorna um nome padrão se o nome for indefinido ou null
+    return "";
   }
-
   const parts = name.split('.');
   const formattedParts = parts.map(part => {
     return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
   });
-
   return formattedParts.join(' ');
-}
+};
 
 export default Header;

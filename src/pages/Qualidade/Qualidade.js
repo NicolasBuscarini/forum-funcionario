@@ -61,7 +61,7 @@ const Qualidade = () => {
                     <div>
                 
                         {/* Seção de Documentos Importantes */}
-                        <Col md={12} className=" mb-4">
+                        <Col md={12} className=" mb-4 qualidade-docs">
                             <Card>
                                 <Card.Header as="h5">Aqui você pode fazer o download dos documentos.</Card.Header>
                                 <Card.Body>
@@ -86,7 +86,7 @@ const Qualidade = () => {
                 </div>
 
                 {/* Conteúdo principal ocupando 50% da largura */}
-                <div className="col-lg-6 col-md-6">
+                <div className="col-lg-6 col-md-6 qualidade-post">
                     <h2>Posts da Categoria "Qualidade"</h2>
                     <div className="list-group">
                         {posts.data.map(post => (

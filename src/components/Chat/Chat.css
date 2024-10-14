@@ -1,0 +1,103 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .card-header .custom-card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre as mensagens */
+    padding: 15px;
+    overflow-y: auto; /* Permite rolagem se as mensagens excederem a altura */
+  }
+  
+  .message-bubble {
+    max-width: 75%; /* Limita a largura do balão */
+    padding: 12px 16px;
+    border-radius: 20px;
+    position: relative;
+    display: inline-block; /* Permite que o balão se ajuste ao conteúdo */
+    line-height: 1.5; /* Melhora a legibilidade */
+    transition: background-color 0.2s ease; /* Transição suave na mudança de cor */
+  }
+  
+  .message-bubble:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Efeito hover */
+  }
+  
+  .message-bubble.auth-user {
+    background-color: #007bff; /* Cor do balão para o usuário */
+    color: white;
+    align-self: flex-end; /* Alinha à direita */
+  }
+  
+  .message-bubble.other-user {
+    background-color: #f1f1f1; /* Cor do balão para outros usuários */
+    color: black;
+    border: 1px solid #e0e0e0; /* Adiciona uma borda ao balão de outros usuários */
+    align-self: flex-start; /* Alinha à esquerda */
+  }
+  
+  .message-bubble::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent; /* Tamanho da ponta do balão */
+    border-right: 10px solid transparent; /* Tamanho da ponta do balão */
+  }
+  
+  .message-bubble.auth-user::after {
+    border-top: 10px solid #007bff; /* Cor da ponta do balão do usuário */
+    bottom: -10px; /* Ajuste a posição da "ponta" do balão */
+    left: 10px; /* Ajuste a posição da "ponta" do balão */
+  }
+  
+  .message-bubble.other-user::after {
+    border-top: 10px solid #f1f1f1; /* Cor da ponta do balão de outros usuários */
+    bottom: -10px; /* Ajuste a posição da "ponta" do balão */
+    right: 10px; /* Ajuste a posição da "ponta" do balão */
+  }
+  
+  .card-footer {
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  input[type="text"] {
+    border-radius: 20px;
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px;
+    flex: 1;
+    margin-right: 10px; /* Espaço entre input e botão */
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff; /* Cor do input ao focar */
+  }
+  
+  .btn {
+    border-radius: 20px;
+  }
+  
+  

@@ -1,65 +1,39 @@
-.container-custom {
-  padding: 15px;
-  border: 1px solid #b0756b; /* Bordas em laranja */
-  color: #939393;
-  background-color: #f7f1f0; /* Fundo claro */
-  border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+/* Estilo geral para o layout da página Home */
+.home-container {
+  padding: 0px;
 }
 
-h2 {
-  color: #b0756b; /* Cor do título */
-  font-weight: bold; /* Negrito */
-  margin-bottom: 15px; /* Espaço abaixo do título */
+.home-left-col, 
+.home-center-col, 
+.home-right-col {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+
 }
 
-.text-center{
-  text-align: center; /* Centraliza o título */
+.home-center-col {
+  /* Estilo para a coluna de Posts */
 }
 
-.list-group {
-  margin-top: 10px; /* Espaço acima da lista */
-}
-
-.list-group-item {
-  white-space: pre-wrap; /* Preserva quebras de linha e espaços */
- /* word-wrap: break-word;  Quebra as palavras grandes para evitar estouro de linha */
-
-  background-color: #ffffff; /* Fundo branco para os itens da lista */
-  border: 1px solid #dee2e6; /* Borda cinza clara */
-  border-radius: 5px; /* Bordas arredondadas nos itens */
-  padding: 10px; /* Espaçamento interno */
-  margin-bottom: 10px; /* Espaço abaixo de cada item */
-  transition: background-color 0.3s; /* Transição suave para hover */
-}
-
-.list-group-item:hover {
-  background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
-}
-
-.mb-1 {
-  margin-bottom: 5px; /* Margem abaixo dos elementos com a classe mb-1 */
-}
-
-small {
-  color: #6c757d; /* Cor cinza para o texto pequeno */
+.home-right-col {
+  /* Estilo para a coluna de Chat */
 }
 
 .birthday-container {
   padding: 20px;
-  border: 1px solid #B06A00; /* Bordas em laranja */
-  border-radius: 8px;
-  background-color: #fcd08e; /* Fundo em tom claro de laranja */  
-  color: #dc6700; /* Texto em tom escuro de laranja */
-  font-size: 15px ;
+  background-color: #ffd957;
+  color: #8a6b00;
+  font-size: 15px;
   text-align: left;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .birthday-title {
   margin-bottom: 10px;
-  color: #B06A00; /* Título em um tom mais vibrante de laranja */
-  font-size: 25px ;
+  color: #B06A00;
+  font-size: 25px;
 }
 
 .birthday-list {
@@ -77,29 +51,30 @@ small {
   height: 100%;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .icon-spacing {
-  margin-right: 8px; /* Define o espaçamento entre o ícone e o texto */
+  margin-right: 8px;
 }
 
 .card-body {
-
   flex-grow: 1;
   overflow-y: auto;
   max-height: 500px;
   display: flex;
-  flex-direction: column-reverse; /* Inverte a direção da exibição das mensagens */
+  flex-direction: column-reverse;
+  
 }
 
 .message-container {
-
   padding: 10px;
 }
 
 .card-footer {
   padding: 10px;
   border-top: 1px solid #ddd;
+
 }
 
 .input-group {
@@ -116,90 +91,84 @@ small {
 }
 
 .custom-card-header {
-  background-color: #cae3c4 !important;
-  color: #569546 !important;
+  background-color: #6fd169 !important;
+  color: #1d541a !important;
 }
+
 
 .custom-card-title {
   font-size: 25px;
 }
 
-/* Estilo para mensagens recebidas */
 .alert.alert-secondary {
-  background-color: #f0f0f0; /* Cor de fundo para mensagens recebidas */
+  background-color: #f0f0f0;
   color: #000;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
-/* Estilo para mensagens enviadas */
 .alert.alert-primary {
-  background-color: #d1e7dd; /* Cor de fundo para mensagens enviadas */
+  background-color: #d1e7dd;
   color: #000;
   border-radius: 10px;
   margin-bottom: 10px;
-  text-align: right; /* Alinha o texto à direita para destacar que é uma mensagem enviada */
+  text-align: right;
 }
 
 .photo-gallery {
   transition: background-color 0.3s;
-  border: 1px solid #007bff; /* Altere a cor da borda conforme necessário */
-  border-radius: 8px; /* Borda arredondada opcional */
-  padding: 16px; /* Espaçamento interno */
-  background-color: #eaf4f7; /* Cor de fundo opcional */
-  margin-bottom: 16px; /* Espaço inferior para separar do BirthdayBoard */
-  margin-top: 16px; /* Adiciona espaço acima do PhotoGallery */
- 
+  padding: 16px;
+  background-color: #eaf5f7;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-
 
 .photo-gallery:hover {
-  background-color: #e9ecef;
-}
-
-.btn {
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.btn:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-
-.photo-gallery {
-  padding: 20px; /* Adiciona espaçamento interno ao redor da galeria */
+  background-color: #eaf5f7;
+  color: #56afbf;
 }
 
 .photo-gallery-title {
-  font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
-  
-  color: #56a7bf;
+  font-size: 1.5rem;
+  color: #56afbf;
 }
 
 .img-fluid {
-  border-radius: 8px; /* Adiciona bordas arredondadas às imagens */
+  border-radius: 20px;
 }
 
-
-.phonelist-gallery-title{
-
-  color:#7f94a9;
+.phonelist-gallery-title {
+  color: #8f2d10;
+  border-radius: 5px;
+  
 }
 
-
-.phonelist-gallery{
-
-  background-color: #f9fafb;
-  color: #939393;
+.phonelist-gallery {
+  background-color: #f0967b;
+  color: #8f2d10;
   padding: 15px;
-  border-radius: 8px; /* Bordas arredondadas */
-
-
-
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-.phonelist-gallery{
 
-  border: 1px solid #eff2f5; /* Altere a cor da borda conforme necessário */
 
+.home-card {
+  background-color: #EEE; /* Cor de fundo suave */
+  border: 1px solid #dee2e6; /* Borda leve */
+  border-radius: 0.5rem; /* Cantos arredondados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  margin: 1rem 0; /* Margem vertical */
+}
+
+.home-card .card-title {
+  font-weight: bold; /* Negrito para o título */
+  color: #343a40; /* Cor do texto do título */
+}
+
+.home-card .card-text {
+  color: #006edc; /* Cor do texto do subtítulo */
+  margin-top: 0.5rem; /* Espaçamento acima do texto */
+  
 }

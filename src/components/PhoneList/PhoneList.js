@@ -1,6 +1,7 @@
 // PhoneList.js
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import './PhoneList.css'
 
 const PhoneList = () => {
   const { authData, logout } = useContext(AuthContext);
@@ -48,7 +49,7 @@ const PhoneList = () => {
       <div className="phonelist-gallery">
       <h2 className="phonelist-gallery-title text-center">
       <i className="bi bi-telephone"></i> {/* Ícone de bolo com margem direita */}
-        Lista de Ramais
+      Lista de Ramais
       </h2>
       </div>
       <ul className="list-group list-group-flush">

@@ -16,8 +16,8 @@ i {
 /*----------navbar-custom------------*/
 .custom-navbar {
   padding: 10px 20px;
-  background-color: #515151; /* Cor de fundo da navbar */
-  border-bottom: 5px solid #d52121; /* Barra inferior vermelha */
+  background-color: #064260; /* Cor de fundo da navbar */
+  border-bottom: 10px solid #bf0805; /* Barra inferior vermelha */
   display: flex;
   justify-content: space-between; /* Espaçamento entre os itens */
   align-items: center; /* Alinhamento vertical dos itens */
@@ -81,16 +81,16 @@ i {
 .nav-link {
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   color: #ffffff; /* Cor do texto padrão */
   text-decoration: none;
-  padding: 8px 12px;
+  padding: 5px 10px;
   border-radius: 8px; /* Cantos arredondados */
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .nav-link .icon {
-  margin-right: 15px; /* Aumenta o espaçamento entre o ícone e o texto */
+  margin-right: 10px; /* Aumenta o espaçamento entre o ícone e o texto */
 }
 
 /* Estilo ao passar o mouse */
@@ -255,6 +255,7 @@ i {
   list-style: none;
   margin: 0;
   padding: 10px;
+  margin-bottom: 4rem;
 }
 
 .menu-list li {

@@ -2,11 +2,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useLocation,
 } from "react-router-dom";
-import Header from "./components/Header/Header";
-import NavBar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home/Home";
@@ -19,29 +15,7 @@ import Qualidade from "./pages/Qualidade/Qualidade.js";
 import Autenticacao from "./pages/Autenticacao/Autenticacao.js";
 import Postar from "./pages/Postar/Postar.js";
 import ResetPassword from "./pages/ResetPassword/ResetPassword.js";
-
-const Layout = ({ children }) => {
-  const location = useLocation();
-
-  // Verifica se a rota atual é "/autenticacao" ou "/reset-password"
-  const isSpecialPage =
-    location.pathname === "/autenticacao" ||
-    location.pathname.startsWith("/reset-password");
-
-  return (
-    <>
-      {!isSpecialPage && <Header />}
-      {!isSpecialPage && <NavBar />}
-
-      <div className="container-fluid mt-4 mb-4">
-        {children} {/* Renderiza os componentes dentro do Layout */}
-      </div>
-
-      {!isSpecialPage && <Footer />}
-    </>
-  );
-};
-
+import Layout from "./Layout.js";
 
 const App = () => {
   return (

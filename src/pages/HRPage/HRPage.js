@@ -40,32 +40,27 @@ const HRPage = () => {
     }, [authData, logout]);
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p className="text-danger">Error: {error}</p>;
+    if (error) return <p className="hr-error">Error: {error}</p>;
 
     return (
+        <div className="hr-container mt-1">      
+            <div>
+                <Card className="text-center hr-card mb-4">
+                    <Card.Body>
+                        <Card.Title as="h1">Recursos Humanos e Departamento Pessoal</Card.Title>
+                        <Card.Text as="h4">Gestão integrada de RH: completa, ágil e automatizada.</Card.Text>
+                    </Card.Body>
+                </Card>
+            </div>
 
-        <div className="container-fluid mt-1">      
-        <div>
-      
-        <Card className="text-center hr-custom-card mb-4">
-          <Card.Body>
-            <Card.Title as="h1">Recursos Humanos e Departamento Pessoal</Card.Title>
-            <Card.Text as="h4">Gestão integrada de RH: completa, ágil e automatizada.</Card.Text>
-          </Card.Body>
-        </Card>
-        </div>
-          
             <div className="row no-gutters">
                 {/* Coluna antes do conteúdo principal, agora ocupando 25% da largura */}
                 <div className="col-lg-3 col-md-3">
                     <div>
-                   
-
                         {/* Seção de Documentos Importantes */}
-                        <Col md={12} className="mb-4">
+                        <Col md={12} className="mb-4 hr-documents">
                             <Card>
-                                <Card.Header as="h4">Aqui você pode fazer o download dos documentos. </Card.Header>
-                              
+                                <Card.Header className="hr-doc-header">Documentos Importantes</Card.Header>
                                 <Card.Body>
                                     <ListGroup>
                                         <ListGroup.Item>
@@ -88,11 +83,11 @@ const HRPage = () => {
                 </div>
 
                 {/* Conteúdo principal ocupando 50% da largura */}
-                <div className="col-lg-6 col-md-6">
+                <div className="col-lg-6 col-md-6 hr-posts">
                     <h2>Posts da Categoria "Recursos Humanos"</h2>
                     <div className="list-group">
                         {posts.data.map(post => (
-                            <div key={post.id} className="list-group-item">
+                            <div key={post.id} className="list-group-item hr-post-item">
                                 <h5 className="mb-1">{post.titulo}</h5>
                                 <p className="mb-1">{post.conteudo}</p>
                                 <small>Autor: {post.autor} | Criado em: {new Date(post.dataCriacao).toLocaleString()}</small>
@@ -102,43 +97,39 @@ const HRPage = () => {
                 </div>
 
                 {/* Coluna depois do conteúdo principal ocupando 25% da largura */}
-                <div className="col-lg-3 col-md-3">
+                <div className="col-lg-3 col-md-3 hr-contact">
                     <div className='mb-3'>
-                    <Card>
-                        <Card.Header as="h5">Contato do RH</Card.Header>
-                        <Card.Body>
-                        <p><strong>Email:</strong> rh@empresa.com.br</p>
-                        <p><strong>Telefone:</strong> (11) 1234-5678</p>
-                        <p><strong>Horário de Atendimento:</strong> Seg-Sex, 9h - 17h</p>
-                        <Button variant="primary" href="mailto:rh@empresa.com.br">Enviar Email</Button>
-                        </Card.Body>
-                    </Card>
-                   
+                        <Card>
+                            <Card.Header className="hr-doc-header">Contato do RH</Card.Header>
+                            <Card.Body>
+                                <p><strong>Email:</strong> rh@empresa.com.br</p>
+                                <p><strong>Telefone:</strong> (11) 1234-5678</p>
+                                <p><strong>Horário de Atendimento:</strong> Seg-Sex, 9h - 17h</p>
+                                <Button variant="primary" href="mailto:rh@empresa.com.br">Enviar Email</Button>
+                            </Card.Body>
+                        </Card>
                     </div>  
 
-                    <Card >
-                    <Card.Header as="h5">Perguntas Frequentes (FAQ)</Card.Header>
-                    <Card.Body>
-                    <ListGroup>
-                        <ListGroup.Item>
-                        <strong>Como solicito minhas férias?</strong> Envie um email para rh@empresa.com.br com suas datas preferidas.
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                        <strong>Como faço para atualizar meus dados cadastrais?</strong> Entre em contato com o RH por email ou telefone.
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                        <strong>Posso solicitar adiantamento do 13º salário?</strong> Sim, verifique o regulamento interno para mais informações.
-                        </ListGroup.Item>
-                        <ListGroup.Item>
-                        <strong>Como consultar meus holerites?</strong> Utilize o sistema de gestão de pessoas ou contate o RH.
-                        </ListGroup.Item>
-                    </ListGroup>
-                    </Card.Body>
-                </Card>
-                
+                    <Card>
+                        <Card.Header className="hr-doc-header">Perguntas Frequentes (FAQ)</Card.Header>
+                        <Card.Body>
+                            <ListGroup>
+                                <ListGroup.Item>
+                                    <strong>Como solicito minhas férias?</strong> Envie um email para rh@empresa.com.br com suas datas preferidas.
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <strong>Como faço para atualizar meus dados cadastrais?</strong> Entre em contato com o RH por email ou telefone.
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <strong>Posso solicitar adiantamento do 13º salário?</strong> Sim, verifique o regulamento interno para mais informações.
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <strong>Como consultar meus holerites?</strong> Utilize o sistema de gestão de pessoas ou contate o RH.
+                                </ListGroup.Item>
+                            </ListGroup>
+                        </Card.Body>
+                    </Card>
                 </div>
-                
-
             </div>
         </div>
     );

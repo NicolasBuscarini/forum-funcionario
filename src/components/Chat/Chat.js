@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { AuthContext } from "../../context/AuthContext";
-import './Chat.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { apiBaseUrl } from '../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import Picker from 'emoji-picker-react';
+import './Chat.css';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const ws = useRef(null);
 
   const { authData } = useContext(AuthContext);
@@ -20,7 +21,6 @@ const Chat = () => {
       return;
     }
 
-    // Establish WebSocket connection
     ws.current = new WebSocket(`ws://${apiBaseUrl}:8080`);
 
     ws.current.onopen = () => {
@@ -38,7 +38,7 @@ const Chat = () => {
             message: messageObj.message,
             time: new Date().toLocaleTimeString()
           };
-          setMessages((prevMessages) => [formattedMessage, ...prevMessages]); // Inverte a ordem das mensagens
+          setMessages((prevMessages) => [formattedMessage, ...prevMessages]);
         } else {
           setMessages((prevMessages) => [{ message: `Server: ${event.data}`, time: new Date().toLocaleTimeString() }, ...prevMessages]);
         }
@@ -58,7 +58,7 @@ const Chat = () => {
   }, [authData]);
 
   const addMessage = (message) => {
-    setMessages((prevMessages) => [message, ...prevMessages]); // Inverte a ordem das mensagens
+    setMessages((prevMessages) => [message, ...prevMessages]);
   };
 
   const sendMessage = () => {
@@ -73,7 +73,7 @@ const Chat = () => {
 
       const messageJson = JSON.stringify(messageObj);
       ws.current.send(messageJson);
-      setInput(''); // Clear input field after sending
+      setInput('');
     } else {
       console.error('User information is missing or input is empty');
     }
@@ -85,20 +85,25 @@ const Chat = () => {
     }
   };
 
+
+
+  const onEmojiClick = (emojiObject) => {
+    const updatedInput = input + emojiObject.emoji;
+    setInput(updatedInput);
+    console.log('Emoji adicionado:', emojiObject.emoji); // Depuração
+    console.log('Novo valor do input:', updatedInput); // Depuração
+  };
+
   return (
     <div className="chat-container">
       <div className={`card card-fixed d-flex flex-column`}>
-
-        {/* Título do chat no topo */}
-       <div className="card-header custom-card-header">
+        <div className="card-header custom-card-header">
           <h2 className="card-title custom-card-title text-center">
             <i className="bi bi-chat icon-spacing"></i>
             Chat, interaja com seus colegas.
           </h2>
         </div>
 
-    
-        {/* Área de mensagens com rolagem */}
         <div className="card-body overflow-auto flex-grow-1 message-container order-1">
           {messages.map((msg, index) => (
             <div key={index} className={`alert ${msg.name === authData.username ? 'alert-primary' : 'alert-secondary'} p-2`}>
@@ -111,7 +116,6 @@ const Chat = () => {
           ))}
         </div>
 
-        {/* Campo de envio de mensagens e imagens */}
         <div className="card-footer order-2">
           <div className="d-flex">
             <input
@@ -122,11 +126,21 @@ const Chat = () => {
               onKeyPress={handleKeyPress}
               placeholder="Digite sua mensagem..."
             />
+            <button
+              className="btn btn-secondary me-2"
+              onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+            >
+              😊
+            </button>
             <button className="btn btn-primary custom-btn d-flex align-items-center justify-content-center" style={{ width: "100px" }} onClick={sendMessage}>
-              <FontAwesomeIcon icon={faPaperPlane} className="me-2" /> 
+              <FontAwesomeIcon icon={faPaperPlane} className="me-2" />
               <span>Enviar</span>
             </button>
           </div>
+
+          {showEmojiPicker && (
+            <Picker onEmojiClick={onEmojiClick} />
+          )}
         </div>
       </div>
     </div>

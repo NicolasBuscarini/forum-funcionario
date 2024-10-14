@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import "./PhotoGallery.css"
 
 const imageFolderPath = "/Imagens"; // Caminho relativo para a pasta de imagens
 
@@ -47,10 +48,10 @@ const PhotoGallery = () => {
         />
       </div>
       <div className="text-center">
-        <button className="btn btn-outline-primary me-2" onClick={handlePrev}>
+        <button className="btn btn-outline-primary me-2 gallery" onClick={handlePrev}>
           <i className="bi bi-arrow-left"></i> Anterior
         </button>
-        <button className="btn btn-outline-primary" onClick={handleNext}>
+        <button className="btn btn-outline-primary gallery" onClick={handleNext}>
           Próximo <i className="bi bi-arrow-right"></i>
         </button>
       </div>

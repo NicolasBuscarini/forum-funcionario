@@ -1,86 +1,42 @@
-// Home.js
-import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import { AuthContext } from "../../context/AuthContext";
+import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import BirthdayBoard from "../../components/BirthdayBoard/BirthdayBoard";
 import PhoneList from "../../components/PhoneList/PhoneList";
 import Chat from "../../components/Chat/Chat";
-import PhotoGallery from "../../components/PhotoGallery/PhotoGallery"; // Importando o novo componente
-import { apiBaseUrl } from '../../config';
+import PhotoGallery from "../../components/PhotoGallery/PhotoGallery";
+import Posts from "../../components/Posts/Posts"; 
+import { AuthContext } from "../../context/AuthContext";
+import { Card } from "react-bootstrap"; // Certifique-se de importar o Card
 
 const Home = () => {
-  const { authData, logout } = useContext(AuthContext);
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        if (!authData || !authData.token) {
-          throw new Error("Você precisa estar autenticado para ver os posts.");
-        }
-
-        const response = await axios.get(
-          `http://${apiBaseUrl}:5011/api/Post/recentes`,
-          {
-            headers: {
-              Authorization: `Bearer ${authData.token}`,
-            },
-          }
-        );
-        setPosts(response.data);
-      } catch (err) {
-        if (err.response && err.response.status === 401) {
-          logout();
-        }
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, [authData, logout]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p className="text-danger">Error: {error}</p>;
+  const { authData } = useContext(AuthContext);
 
   return (
-    <div className="container-fluid mt-4">
+    <div className="home-container container-fluid mt-4">
+      {/* Faixa com o card */}
+      <Card className="text-center home-card mb-4">
+        <Card.Body>
+          <Card.Title as="h1">Conectando pessoas e informações: a intranet que transforma a nossa comunicação.</Card.Title>
+          <Card.Text as="h4">Fazendo da nossa empresa um ótimo lugar para trabalhar, todos os dias!</Card.Text>
+        </Card.Body>
+      </Card>
+
       <div className="row g-3">
         {/* Primeira coluna: BirthdayBoard, PhotoGallery e PhoneList */}
-        <div className="col-xl-3 col-md-3 mb-2">
+        <div className="home-left-col col-xl-3 col-md-3 mb-2">
           <BirthdayBoard />
-          <PhotoGallery className="mt-3" /> {/* Adicionando margem superior aqui */}
-          <PhoneList /> {/* O PhoneList ficará abaixo da galeria */}
+          <PhotoGallery className="mt-3" />
+          <PhoneList />
         </div>
 
         {/* Segunda coluna: Posts */}
-        <div className="col-xl-6 col-md-6 mb-2">
-          <h2 className="home-title text-center">
-            <i className="bi bi-file-post"></i>
-            Aqui você pode acompanhar as últimas postagens
-          </h2>
-          <div className="list-group">
-            {posts.data.map((post) => (
-              <div key={post.id} className="list-group-item">
-                <h4>{post.categoria}</h4>
-                <h5 className="mb-1">{post.titulo}</h5>
-                <p className="mb-1">{post.conteudo}</p>
-                <small>
-                  Autor: {post.autor} | Criado em:{" "}
-                  {new Date(post.dataCriacao).toLocaleString()}
-                </small>
-              </div>
-            ))}
-          </div>
+        <div className="home-center-col col-xl-6 col-md-6 mb-2">
+          <Posts />
         </div>
 
         {/* Terceira coluna: Chat */}
-        <div className="col-xl-3 col-md-3 mb-2">
+        <div className="home-right-col col-xl-3 col-md-3 mb-2">
           <Chat />
         </div>
       </div>
