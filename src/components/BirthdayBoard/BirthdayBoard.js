@@ -3,6 +3,10 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; // Importa os estilos do calendário
 import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import './BirthdayBoard.css'; // Arquivo de estilo adicional
+import { apiBaseUrl } from '../../config';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
 
 const BirthdayBoard = () => {
   const [birthdays, setBirthdays] = useState([]);
@@ -21,10 +25,9 @@ const BirthdayBoard = () => {
   // Função para buscar os aniversariantes do endpoint
   const fetchBirthdays = async () => {
     try {
-      const response = await fetch('http://localhost:5011/api/Employee/current-month');
-      const data = await response.json();
-      console.log(data);
-      setBirthdays(data);
+      const response = await fetch(`http://${apiBaseUrl}:5011/api/Employee/current-month`);
+      const jsonResponse = await response.json();
+      setBirthdays(jsonResponse.data);
     } catch (error) {
       console.error('Erro ao buscar aniversariantes:', error);
       // Se der erro no fetch, usamos os dados mockados
@@ -35,7 +38,6 @@ const BirthdayBoard = () => {
   // Chama a função fetchBirthdays quando o componente é montado
   useEffect(() => {
     fetchBirthdays();
-    console.log(birthdays);
   }, []);
 
   // Função para marcar as datas de aniversário no calendário
@@ -70,15 +72,19 @@ const BirthdayBoard = () => {
     <Container className="birthday-container">
       <Row>
         <Col className="d-flex justify-content-center">
-          <h2 className="birthday-title text-center">Aniversariantes de {selectedDate.toLocaleString('default', { month: 'long' })}</h2>
+          <h2 className="birthday-title text-center">
+            <i className="bi bi-cake2-fill"></i> {/* Ícone de bolo com margem direita */}
+            Aniversariantes de {selectedDate.toLocaleString('default', { month: 'long' })}
+          </h2>
         </Col>
       </Row>
+
       <Row>
         <Col className="d-flex justify-content-center">
           <Calendar
             onChange={setSelectedDate}
             value={selectedDate}
-            tileContent={tileContent}
+            tileContent={tileContent}  
             minDate={firstDayOfMonth} // Limita ao primeiro dia do mês
             maxDate={lastDayOfMonth} // Limita ao último dia do mês
             prevLabel={null} // Remove o botão de navegação anterior

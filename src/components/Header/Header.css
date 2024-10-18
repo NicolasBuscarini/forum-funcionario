@@ -1,7 +1,10 @@
 /* Header.css */
+
+
 .header-container {
 
-    background-color: #ffffff; /* Fundo branco */
+  background-color: #f8f7f3;
+
     padding: 20px;
     display: flex;
     align-items: center; /* Alinha o logo e o texto verticalmente */
@@ -9,9 +12,11 @@
   }
   
   .header-logo {
-    width: 150px; /* Ajuste o tamanho conforme necessário */
+    width: 250px; /* Ajuste o tamanho conforme necessário */
     height: auto;
     margin-right: 40px; /* Espaçamento entre o logo e o texto */
+   
+
   }
 
   .header-logo1 {
@@ -32,25 +37,27 @@
   }
   
   .header-title {
-    font-size: 32px; /* Letras maiores */
-    color: #ff0000; /* Cor das letras em vermelho */
-    font-family: 'Arial', sans-serif; /* Fontes mais comuns e legíveis */
-    font-weight: bold; /* Negrito para dar destaque */
-    border-bottom: darksalmon;
-    text-shadow: 0.1em  0.1em  0.2em rgba(191, 5, 5, 0.384);
+    font-size: 40px; /* Aumentei o tamanho da fonte */
+    color: #ee3737; /* Usei um tom de vermelho mais elegante (Vermelho Escuro) */
+    font-family:  'Arial', sans-serif; /* Substituí pela fonte 'Georgia' para um estilo mais sofisticado */
+    font-weight: 600; /* Mantenha um peso menor que bold, mas ainda com destaque */
+    font-style: italic; /* Mantive o itálico para dar sofisticação */
+    border-bottom: 2px solid #CD5C5C; /* Defini uma borda sutil com mais contraste */
+    text-shadow: 0.1em 0.1em 0.2em rgba(139, 0, 0, 0.5); /* Reduzi o tamanho da sombra para um efeito mais suave */
     margin: 0;
-  }
+}
+
   
   .header-subtitle {
-    font-size: 22px; /* Subtítulo um pouco menor */
-    color: #3108a1; /* Um tom de vermelho mais claro para contraste */
+    font-size: 45px; /* Subtítulo um pouco menor */
+    color: #064260; /* Um tom de vermelho mais claro para contraste */
     font-family:  'Arial', sans-serif;
-    text-shadow: 0.1em 0.1em 0.2em rgba(33, 7, 120, 0.384);
+    text-shadow: 0.1em 0.1em 0.2em rgba(22, 3, 82, 0.384);
     margin: 5px 0 0;
   }
 
   .header-text {
-    font-size: 22px; /* Subtítulo um pouco menor */
+    font-size: 45px; /* Subtítulo um pouco menor */
     color: #000000; /* Um tom de vermelho mais claro para contraste */
     font-family:  'Arial', sans-serif;
     text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.384);

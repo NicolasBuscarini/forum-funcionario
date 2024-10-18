@@ -1,0 +1,9 @@
+.gallery {
+    background-color: #006edc;
+    color: #fff;
+  }
+  
+  .gallery:hover {
+    background-color: #72a1ad;
+  
+  }

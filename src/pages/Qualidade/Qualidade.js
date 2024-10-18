@@ -4,7 +4,9 @@ import { AuthContext } from '../../context/AuthContext';
 import { Card, Col, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Qualidade.css';
-import { Container, Row,   Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { apiBaseUrl } from '../../config';
+
 
 
 const Qualidade = () => {
@@ -20,7 +22,7 @@ const Qualidade = () => {
                     throw new Error('Você precisa estar autenticado para ver os posts.');
                 }
 
-                const response = await axios.get('http://localhost:5011/api/Post/categoria/qualidade', {
+                const response = await axios.get(`http://${apiBaseUrl}:5011/api/Post/categoria/qualidade`, {
                     headers: {
                         Authorization: `Bearer ${authData.token}`
                     }
@@ -59,7 +61,7 @@ const Qualidade = () => {
                     <div>
                 
                         {/* Seção de Documentos Importantes */}
-                        <Col md={12} className=" mb-4">
+                        <Col md={12} className=" mb-4 qualidade-docs">
                             <Card>
                                 <Card.Header as="h5">Aqui você pode fazer o download dos documentos.</Card.Header>
                                 <Card.Body>
@@ -84,10 +86,10 @@ const Qualidade = () => {
                 </div>
 
                 {/* Conteúdo principal ocupando 50% da largura */}
-                <div className="col-lg-6 col-md-6">
+                <div className="col-lg-6 col-md-6 qualidade-post">
                     <h2>Posts da Categoria "Qualidade"</h2>
                     <div className="list-group">
-                        {posts.map(post => (
+                        {posts.data.map(post => (
                             <div key={post.id} className="list-group-item">
                                 <h5 className="mb-1">{post.titulo}</h5>
                                 <p className="mb-1">{post.conteudo}</p>

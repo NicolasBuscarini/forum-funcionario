@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   react-app:
     build:
@@ -42,3 +40,4 @@ services:
 networks:
   webnet:
     driver: bridge
+

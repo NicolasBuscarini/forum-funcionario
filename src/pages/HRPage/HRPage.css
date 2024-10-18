@@ -1,13 +1,19 @@
-.col-md-6 {
+.hr-container {
   padding: 15px;
-  border: 1px solid #425b64; /* Bordas em laranja */
-  background-color: #dde7f2; /* Fundo claro */
-  border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-
 }
 
-.text-center{
+.hr-posts {
+  padding: 15px;
+  background-color: #dde7f2; /* Fundo claro */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hr-error {
+  color: #d9534f; /* Cor de erro */
+}
+
+.text-center {
   text-align: center; /* Centraliza o título */
 }
 
@@ -15,10 +21,9 @@
   margin-top: 10px; /* Espaço acima da lista */
 }
 
-.list-group-item {
+.hr-post-item {
   white-space: pre-wrap; /* Preserva quebras de linha e espaços */
-  word-wrap: break-word; /*   Quebra as palavras grandes para evitar estouro de linha */
-
+  word-wrap: break-word; /* Quebra as palavras grandes para evitar estouro de linha */
   background-color: #ffffff; /* Fundo branco para os itens da lista */
   border: 1px solid #dee2e6; /* Borda cinza clara */
   border-radius: 5px; /* Bordas arredondadas nos itens */
@@ -27,16 +32,24 @@
   transition: background-color 0.3s; /* Transição suave para hover */
 }
 
-.list-group-item:hover {
+.hr-post-item:hover {
   background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
 }
 
-.mb-1 {
-  margin-bottom: 5px; /* Margem abaixo dos elementos com a classe mb-1 */
+.hr-docments{
+
+  color: #173454; /* Texto escuro */
+}
+.hr-contact {
+
+   color: #173454; /* Texto escuro */
+ }
+
+.hr-card{
+  color: #173454; /* Texto escuro */
+  background-color: #638fed;
 }
 
-.hr-custom-card {
-  background-color: #6298d5; /* Cor personalizada para a página de RH */
-  color: #173454; /* Texto branco */
-  border: 1px solid #062b37; /* Borda personalizada */
+.hr-doc-header {
+  font-size: 25px;
 }

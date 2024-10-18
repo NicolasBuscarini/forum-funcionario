@@ -1,46 +1,21 @@
-import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useLocation,
 } from "react-router-dom";
-import Header from "./components/Header/Header";
-import NavBar from "./components/NavBar/NavBar";
-import Chat from "./components/Chat/Chat";
-import Footer from "./components/Footer/Footer";
-import BirthdayBoard from "./components/BirthdayBoard/BirthdayBoard";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home/Home";
 import HRPage from "./pages/HRPage/HRPage";
 import DocPg from "./pages/Doc/DocPg.js";
-import LoginPage from "./pages/LoginPage/LoginPage";
 import VideoPage from "./pages/VideoPage/VideoPg";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import CreatePost from "./pages/CreatePost/CreatePost.js";
 import Qualidade from "./pages/Qualidade/Qualidade.js";
-
-const Layout = ({ children }) => {
-  const location = useLocation(); // Hook agora está dentro do Router
-
-  const isLoginPage = location.pathname === "/login"; // Verifica se é a rota de login
-  const isHomePage = location.pathname === "/"; // Verifica se é a rota de home
-
-  return (
-    <>
-      {!isLoginPage && <Header />}
-      {!isLoginPage && <NavBar />}
-
-      <div className="container-fluid mt-4 mb-4">
-        {children} {/* Renderiza os componentes dentro do Layout */}
-      </div>
-
-      {!isLoginPage && <Footer />}
-    </>
-  );
-};
+import Autenticacao from "./pages/Autenticacao/Autenticacao.js";
+import Postar from "./pages/Postar/Postar.js";
+import ResetPassword from "./pages/ResetPassword/ResetPassword.js";
+import Layout from "./Layout.js";
 
 const App = () => {
   return (
@@ -49,7 +24,7 @@ const App = () => {
         <Layout>
           <Routes>
             {/* Login Route */}
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/autenticacao" element={<Autenticacao />} />
 
             {/* Protected Routes */}
             <Route
@@ -69,7 +44,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Qualidade"
+              path="/qualidade"
               element={
                 <ProtectedRoute>
                   <Qualidade />
@@ -77,7 +52,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Documentos"
+              path="/documentos"
               element={
                 <ProtectedRoute>
                   <DocPg />
@@ -85,7 +60,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Fique por Dentro"
+              path="/fique-por-dentro"
               element={
                 <ProtectedRoute>
                   <VideoPage />
@@ -93,7 +68,7 @@ const App = () => {
               }
             />
             <Route
-              path="/Suporte"
+              path="/suporte"
               element={
                 <ProtectedRoute>
                   <Home />
@@ -101,13 +76,15 @@ const App = () => {
               }
             />
             <Route
-              path="/Postar"
+              path="/postar"
               element={
                 <ProtectedRoute>
-                  <CreatePost />
+                  <Postar />
                 </ProtectedRoute>
               }
             />
+
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
         </Layout>
       </Router>

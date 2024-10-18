@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { apiBaseUrl } from '../../config';
 
-const CreatePost = () => {
+
+const Postar = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [categoria, setCategoria] = useState('Qualidade'); // Categoria inicial selecionada
+  const [categoria, setCategoria] = useState('Qualidade'); 
   const [tags, setTags] = useState('');
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -26,7 +28,7 @@ const CreatePost = () => {
     }
 
     try {
-      const result = await fetch('http://localhost:5011/api/Post', {
+      const result = await fetch(`http://${apiBaseUrl}:5011/api/Post`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${authData.token}`,
@@ -94,7 +96,7 @@ const CreatePost = () => {
             required
           >
             <option value="Qualidade">Qualidade</option>
-            <option value="RH">RH</option>
+            <option value="Rh">Recursos Humanos</option>
             <option value="Outros">Outros</option>
           </select>
         </div>
@@ -124,4 +126,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default Postar;
