@@ -25,3 +25,4 @@ yarn-error.log*
 public/etiqueta-bruto.pdf
 public/puribmp.bmp
 public/puribmp.png
+.env

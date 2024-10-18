@@ -1,0 +1,42 @@
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .custom-input {
+    border-radius: 25px;
+    padding-left: 40px; /* Espaço para o ícone */
+    border: 1px solid #ced4da;
+    height: 45px;
+  }
+  
+  .input-icon {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #007bff;
+  }
+  
+  .custom-btn {
+    background-color: #ced4da;
+    border-color: #ced4da;
+    border-radius: 25px;
+    height: 45px;
+    width: 100%;
+
+  }
+  
+  .custom-btn:hover {
+    background-color: #adb5bd;
+    border-color: #adb5bd;
+  }
+  

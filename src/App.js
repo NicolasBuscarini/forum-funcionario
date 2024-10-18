@@ -1,73 +1,95 @@
-// src/App.js
-import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Header from "./components/Header/Header";
-import NavBar from "./components/NavBar/NavBar";
-import Chat from "./components/Chat/Chat";
-import Footer from "./components/Footer/Footer";
-import BirthdayBoard from "./components/BirthdayBoard/BirthdayBoard";
-import CurrentDate from "./components/CurrentDate/CurrentDate";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./pages/Home/Home";
 import HRPage from "./pages/HRPage/HRPage";
 import DocPg from "./pages/Doc/DocPg.js";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import { AuthProvider, AuthContext } from "./context/AuthContext";
+import VideoPage from "./pages/VideoPage/VideoPg";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Qualidade from "./pages/Qualidade/Qualidade.js";
+import Autenticacao from "./pages/Autenticacao/Autenticacao.js";
+import Postar from "./pages/Postar/Postar.js";
+import ResetPassword from "./pages/ResetPassword/ResetPassword.js";
+import Layout from "./Layout.js";
 
 const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <Routes>
-          {/* Login Route */}
-          <Route path="/login" element={<LoginPage />} />
-          
-          {/* Protected Routes */}
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <>
-                  <Header />
-                  <NavBar />
-                  <div className="container-fluid mt-4 mb-4">
-                    <div className="row">
-                      <div className="col-lg-2">
-                        <CurrentDate />
-                        <BirthdayBoard />
-                      </div>
-                      <div className="col-lg-7">
-                        <Routes>
-                          <Route path="/" element={<Home />} />
-                          <Route path="/rh" element={<HRPage />} />
-                          <Route path="/Documentos" element={<DocPg />} />
-                        </Routes>
-                      </div>
-                      <div className="col-lg-3">
-                        <Chat />
-                      </div>
-                    </div>
-                  </div>
-                  <Footer />
-                </>
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+        <Layout>
+          <Routes>
+            {/* Login Route */}
+            <Route path="/autenticacao" element={<Autenticacao />} />
+
+            {/* Protected Routes */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/rh"
+              element={
+                <ProtectedRoute>
+                  <HRPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/qualidade"
+              element={
+                <ProtectedRoute>
+                  <Qualidade />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/documentos"
+              element={
+                <ProtectedRoute>
+                  <DocPg />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/fique-por-dentro"
+              element={
+                <ProtectedRoute>
+                  <VideoPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/suporte"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/postar"
+              element={
+                <ProtectedRoute>
+                  <Postar />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route path="/reset-password" element={<ResetPassword />} />
+          </Routes>
+        </Layout>
       </Router>
     </AuthProvider>
   );
-};
-
-const ProtectedRoute = ({ children }) => {
-  const { authData } = useContext(AuthContext);
-
-  if (!authData) {
-    return <Navigate to="/login" />;
-  }
-
-  return children;
 };
 
 export default App;

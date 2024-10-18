@@ -1,54 +1,45 @@
-// Home.js
-import React from "react";
-import Announcements from "../../components/Home/Announcements";
-import PopularTopics from "../../components/Home/PopularTopics";
-import ActivityFeed from "../../components/Home/ActivityFeed";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import React, { useContext } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Home.css";
+import BirthdayBoard from "../../components/BirthdayBoard/BirthdayBoard";
+import PhoneList from "../../components/PhoneList/PhoneList";
+import Chat from "../../components/Chat/Chat";
+import PhotoGallery from "../../components/PhotoGallery/PhotoGallery";
+import Posts from "../../components/Posts/Posts"; 
+import { AuthContext } from "../../context/AuthContext";
+import { Card } from "react-bootstrap"; // Certifique-se de importar o Card
 
 const Home = () => {
+  const { authData } = useContext(AuthContext);
+
   return (
-    <div>
-      {/* Banner de boas-vindas */}
-      <Card className="text-center bg-primary text-white mb-4">
+    <div className="home-container container-fluid mt-4">
+      {/* Faixa com o card */}
+      <Card className="text-center home-card mb-4">
         <Card.Body>
-          <Card.Title>Bem-vindo ao Portal do Colaborador!</Card.Title>
-          <Card.Text>Acompanhe as últimas novidades e interaja com seus colegas.</Card.Text>
+          <Card.Title as="h1">Conectando pessoas e informações: a intranet que transforma a nossa comunicação.</Card.Title>
+          <Card.Text as="h4">Fazendo da nossa empresa um ótimo lugar para trabalhar, todos os dias!</Card.Text>
         </Card.Body>
       </Card>
 
-      <Row>
-        {/* Anúncios recentes */}
-        <Col md={6} className="mb-4">
-          <Card>
-            <Card.Header as="h5">Anúncios Recentes</Card.Header>
-            <Card.Body>
-              <Announcements />
-            </Card.Body>
-          </Card>
-        </Col>
+      <div className="row g-3">
+        {/* Primeira coluna: BirthdayBoard, PhotoGallery e PhoneList */}
+        <div className="home-left-col col-xl-3 col-md-3 mb-2">
+          <BirthdayBoard />
+          <PhotoGallery className="mt-3" />
+          <PhoneList />
+        </div>
 
-        {/* Tópicos populares no fórum */}
-        <Col md={6} className="mb-4">
-          <Card>
-            <Card.Header as="h5">Tópicos Populares</Card.Header>
-            <Card.Body>
-              <PopularTopics />
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+        {/* Segunda coluna: Posts */}
+        <div className="home-center-col col-xl-6 col-md-6 mb-2">
+          <Posts />
+        </div>
 
-      {/* Feed de atividades */}
-      <Row>
-        <Col>
-          <Card>
-            <Card.Header as="h5">Feed de Atividades</Card.Header>
-            <Card.Body>
-              <ActivityFeed />
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+        {/* Terceira coluna: Chat */}
+        <div className="home-right-col col-xl-3 col-md-3 mb-2">
+          <Chat />
+        </div>
+      </div>
     </div>
   );
 };

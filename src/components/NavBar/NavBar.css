@@ -1,52 +1,297 @@
-/* NavBar.css */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+i {
+  margin-right: 10px;
+}
+
+/*----------navbar-custom------------*/
 .custom-navbar {
-    background-color: #217aff; /* Fundo branco */
-    border-bottom: 4px solid #d52121; /* Barra inferior vermelha */
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Arial', sans-serif; /* Fonte moderna */
-    color: #ffffff; /* Cor das letras em vermelho */
-    font-weight: bold;
+  padding: 10px 20px;
+  background-color: #064260; /* Cor de fundo da navbar */
+  border-bottom: 10px solid #bf0805; /* Barra inferior vermelha */
+  display: flex;
+  justify-content: space-between; /* Espaçamento entre os itens */
+  align-items: center; /* Alinhamento vertical dos itens */
+  font-family: 'Arial', sans-serif;
+  color: #B7B7B7; /* Cor do texto */
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra na navbar */
+}
+
+.navbar-logo {
+  padding: 15px;
+  color: #fff;
+}
+
+.navbar-mainbg {
+  background-color: #5161ce;
+  padding: 0px;
+}
+
+#navbarSupportedContent {
+  overflow: hidden;
+  position: relative;
+}
+
+#navbarSupportedContent ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+#navbarSupportedContent ul li a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+  padding: 20px 20px;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ocupa a largura total */
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.hamburger-icon {
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  display: block;
+  margin-left: auto; /* Garante que o ícone vá para o extremo direito */
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #ffffff; /* Cor do texto padrão */
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 8px; /* Cantos arredondados */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-link .icon {
+  margin-right: 10px; /* Aumenta o espaçamento entre o ícone e o texto */
+}
+
+/* Estilo ao passar o mouse */
+.nav-link:hover {
+  background-color: #d52121; /* Fundo ao passar o mouse */
+  color: #ffffff; /* Texto branco ao passar o mouse */
+  transform: scale(1.05); /* Aumenta o tamanho do link ao passar o mouse */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+}
+
+/* Link ativo - cor diferente para cada link */
+.nav-link.active {
+  background-color: #b22222; /* Fundo laranja para o link ativo */
+  color: #ffffff; /* Texto branco para o link ativo */
+  border-bottom: 3px solid #ffffff5b; /* Barra inferior branca para o link ativo */
+}
+
+/* Efeito horizontal */
+.hori-selector {
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background-color: #fff;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-top: 10px;
+}
+
+.hori-selector .right,
+.hori-selector .left {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  bottom: 10px;
+}
+
+.hori-selector .right {
+  right: -25px;
+}
+
+.hori-selector .left {
+  left: -25px;
+}
+
+.hori-selector .right:before,
+.hori-selector .left:before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #5161ce;
+}
+
+.hori-selector .right:before {
+  bottom: 0;
+  right: -25px;
+}
+
+.hori-selector .left:before {
+  bottom: 0;
+  left: -25px;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-custom {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
   }
-  
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+
+  .navbar-expand-custom .navbar-nav {
+    -ms-flex-direction: row;
+    flex-direction: row;
   }
-  
-  .navbar-brand {
-    font-size: 24px;
-    color: #b22222; /* Vermelho */
-    font-weight: bold;
-    text-decoration: none;
+
+  .navbar-expand-custom .navbar-toggler {
+    display: none;
   }
-  
+
+  .navbar-expand-custom .navbar-collapse {
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  #navbarSupportedContent ul li a {
+    padding: 12px 30px;
+  }
+
   .navbar-links {
+    display: none; /* Esconde os links em telas pequenas */
+  }
+
+  .navbar-links.active {
     display: flex;
-    gap: 20px; /* Espaçamento entre os links */
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #515151;
+    width: 100%;
+    gap: 20px;
+    padding: 10px 0;
   }
-  
-  .nav-link {
-    font-size: 18px;
-    color: #b22222; /* Cor inicial do link */
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+
+  .hori-selector {
+    margin-top: 0px;
+    margin-left: 10px;
+    border-radius: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
   }
-  
-  .nav-link:hover {
-    background-color: #b22222; /* Cor de fundo laranja no hover */
-    color: #ffffff; /* Texto branco no hover */
+
+  .hori-selector .left,
+  .hori-selector .right {
+    right: 10px;
   }
-  
-  .nav-link.active {
-    color: #b22222; /* Cor para o item ativo */
-    font-weight: bold;
-    border-bottom: 2px solid #b22222; /* Barra inferior para o item ativo */
+
+  .hori-selector .left {
+    top: -25px;
+    left: auto;
   }
-  
+
+  .hori-selector .right {
+    bottom: -25px;
+  }
+
+  .hori-selector .left:before {
+    left: -25px;
+    top: -25px;
+  }
+
+  .hori-selector .right:before {
+    bottom: -25px;
+    left: -25px;
+  }
+}
+
+
+.menu-popup {
+  position: absolute;
+  right: 10px;
+  top: 50px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  margin-bottom: 4rem;
+}
+
+.menu-list li {
+  padding: 10px;
+  text-align: right;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.menu-list li a:hover {
+  color: #007bff;
+}
+
+.navbar-search {
+  display: flex; /* Para alinhar o input e o botão na mesma linha */
+  align-items: center; /* Centraliza verticalmente */
+  margin-left: auto; /* Empurra o campo de pesquisa para a direita */
+  margin-right: 10px; /* Espaço à direita entre a pesquisa e o ícone hamburger */
+}
+
+.search-input {
+  padding: 5px; /* Espaçamento interno */
+  border: 1px solid #ccc; /* Borda padrão */
+  border-radius: 4px; /* Bordas arredondadas */
+  width: 150px; /* Largura do campo de pesquisa */
+  height: 36px; /* Altura do campo de pesquisa */
+  margin-right: 5px; /* Espaço entre o input e o botão */
+}
+
+.search-button {
+  border: none; /* Remove a borda do botão */
+  background-color: transparent; /* Fundo transparente */
+  cursor: pointer; /* Cursor de mão ao passar sobre o botão */
+  color: #ffffff; /* Cor do ícone */
+  font-size: 16px; /* Tamanho do ícone */
+}
