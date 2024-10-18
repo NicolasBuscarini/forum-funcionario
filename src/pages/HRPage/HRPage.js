@@ -20,7 +20,7 @@ const HRPage = () => {
                     throw new Error('Você precisa estar autenticado para ver os posts.');
                 }
 
-                const response = await axios.get(`http://${apiBaseUrl}:5011/api/Post/categoria/qualidade`, {
+                const response = await axios.get(`http://${apiBaseUrl}:5011/api/Post/categoria/rh`, {
                     headers: {
                         Authorization: `Bearer ${authData.token}`
                     }

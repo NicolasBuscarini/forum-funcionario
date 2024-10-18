@@ -96,7 +96,7 @@ const Postar = () => {
             required
           >
             <option value="Qualidade">Qualidade</option>
-            <option value="RH">RH</option>
+            <option value="Rh">Recursos Humanos</option>
             <option value="Outros">Outros</option>
           </select>
         </div>

@@ -3,16 +3,17 @@ import { AuthContext } from "../../context/AuthContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { apiBaseUrl } from '../../config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faSmile, faImage } from '@fortawesome/free-solid-svg-icons';
 import Picker from 'emoji-picker-react';
-import './Chat.css';
+import GifPicker from '../GifPicker/GifPicker';
+import "./Chat.css";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showGifPicker, setShowGifPicker] = useState(false);
   const ws = useRef(null);
-
   const { authData } = useContext(AuthContext);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const Chat = () => {
     };
 
     return () => {
-      ws.current.close(); // Clean up WebSocket connection on component unmount
+      ws.current.close(); // Limpar conexão WebSocket ao desmontar o componente
     };
   }, [authData]);
 
@@ -61,19 +62,19 @@ const Chat = () => {
     setMessages((prevMessages) => [message, ...prevMessages]);
   };
 
-  const sendMessage = () => {
-    if (input.trim() && authData) {
+  const sendMessage = (gifUrl = '') => {
+    if ((input.trim() || gifUrl) && authData) {
       const messageObj = {
         user: {
           name: authData.username,
           ip: authData.clientIp,
         },
-        message: input,
+        message: gifUrl || input,
       };
 
       const messageJson = JSON.stringify(messageObj);
       ws.current.send(messageJson);
-      setInput('');
+      setInput(''); // Limpa o input após o envio
     } else {
       console.error('User information is missing or input is empty');
     }
@@ -81,17 +82,19 @@ const Chat = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      sendMessage();
+      sendMessage(); // Envia a mensagem ao pressionar Enter
     }
   };
-
-
 
   const onEmojiClick = (emojiObject) => {
     const updatedInput = input + emojiObject.emoji;
     setInput(updatedInput);
     console.log('Emoji adicionado:', emojiObject.emoji); // Depuração
-    console.log('Novo valor do input:', updatedInput); // Depuração
+  };
+
+  const onGifSelect = (gifUrl) => {
+    sendMessage(gifUrl);
+    setShowGifPicker(false); // Fecha o seletor de GIFs após a seleção
   };
 
   return (
@@ -106,9 +109,13 @@ const Chat = () => {
 
         <div className="card-body overflow-auto flex-grow-1 message-container order-1">
           {messages.map((msg, index) => (
-            <div key={index} className={`alert ${msg.name === authData.username ? 'alert-primary' : 'alert-secondary'} p-2`}>
+            <div key={index} className={`alert message-bubble ${msg.name === authData.username ? 'alert-primary' : 'alert-secondary'} p-2`}>
               <strong>{msg.name} ({msg.ip})</strong><br />
-              <span>{msg.message}</span>
+              {msg.message && msg.message.includes('giphy.com') ? (
+                <img src={msg.message} alt="GIF" style={{ maxWidth: '100%' }} />
+              ) : (
+                <span>{msg.message || 'Mensagem indisponível'}</span>
+              )}
               <div className="text-end">
                 <small>{msg.time}</small>
               </div>
@@ -132,7 +139,13 @@ const Chat = () => {
             >
               😊
             </button>
-            <button className="btn btn-primary custom-btn d-flex align-items-center justify-content-center" style={{ width: "100px" }} onClick={sendMessage}>
+            <button
+              className="btn btn-secondary me-2"
+              onClick={() => setShowGifPicker(!showGifPicker)}
+            >
+              <FontAwesomeIcon icon={faImage} />
+            </button>
+            <button className="btn btn-primary custom-btn d-flex align-items-center justify-content-center" style={{ width: "100px" }} onClick={() => sendMessage()}>
               <FontAwesomeIcon icon={faPaperPlane} className="me-2" />
               <span>Enviar</span>
             </button>
@@ -141,6 +154,7 @@ const Chat = () => {
           {showEmojiPicker && (
             <Picker onEmojiClick={onEmojiClick} />
           )}
+          {showGifPicker && <GifPicker onGifSelect={onGifSelect} />}
         </div>
       </div>
     </div>

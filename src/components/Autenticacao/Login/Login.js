@@ -36,9 +36,9 @@ const Login = ({ username, onForgotPassword }) => { // Recebe a prop onForgotPas
      
       <CustomInput 
         type="text"
-        icon={<FaUser />} // Ícone de usuário
         placeholder="Digite seu nome"
         value={username}
+        icon={<FaUser />} // Ícone de usuário
         readOnly // Campo somente leitura
       />
 
