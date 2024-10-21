@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import io from "socket.io-client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Chat.css"; // Importando os estilos
@@ -8,6 +9,7 @@ import ChatArea from "./ChatArea/ChatArea";
 const socket = io("http://localhost:3003"); // Conectar ao servidor Socket.IO na porta 3003
 
 const Chat = () => {
+  const { authData, logout } = useContext(AuthContext);
   const [user, setUser] = useState("");
   const [currentChatId, setCurrentChatId] = useState(
     "256d22b9-41fc-4b0d-ae0c-ce6dd624a40e"
@@ -59,7 +61,7 @@ const Chat = () => {
 
   // Solicitar o nome do usuário
   useEffect(() => {
-    setUser(prompt("Enter your name:"));
+    setUser(authData?.username);
     socket.emit("joinChat", currentChatId); // Entrar no chat "Todos"
   }, [currentChatId]);
 

@@ -8,6 +8,7 @@ namespace ForumFuncionario.Api.Config.Extensions
         public static void ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("EntityConnection");
+            Console.WriteLine($"Connection String: {connectionString}");
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString)); // Configuração do provedor de banco de dados

@@ -19,4 +19,4 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 
 # Definir o ponto de entrada da aplicação
-ENTRYPOINT ["dotnet", "ConsumidorPedidos.dll"]
+ENTRYPOINT ["dotnet", "ForumFuncionario.Api.dll"]
