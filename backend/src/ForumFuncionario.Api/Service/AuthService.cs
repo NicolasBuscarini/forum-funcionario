@@ -404,24 +404,5 @@ namespace ForumFuncionario.Api.Service
                 throw;
             }
         }
-
-
-        /// <summary>
-        /// Retrieves the currently authenticated user.
-        /// </summary>
-        /// <returns>The currently authenticated user.</returns>
-        public async Task<UserApp> GetCurrentUser()
-        {
-            try
-            {
-                UserApp user = (await userManager.GetUserAsync(httpContextAccessor.HttpContext!.User))!;
-                return user;
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "Error occurred while retrieving the current user.");
-                throw;
-            }
-        }
     }
 }

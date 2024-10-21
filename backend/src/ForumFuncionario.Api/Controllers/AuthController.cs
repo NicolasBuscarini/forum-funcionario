@@ -225,46 +225,6 @@ namespace ForumFuncionario.Api.Controllers
         }
 
         /// <summary>
-        /// Recupera o usuário atualmente autenticado.
-        /// Se nenhum usuário estiver autenticado, retorna uma mensagem de erro.
-        /// </summary>
-        /// <returns>
-        /// Uma resposta com os dados do usuário autenticado ou uma mensagem de erro se o usuário não for encontrado.
-        /// </returns>
-        /// <response code="200">Usuário atual recuperado com sucesso.</response>
-        /// <response code="404">Usuário atual não encontrado ou não autenticado.</response>
-        /// <response code="500">Erro inesperado no servidor ao tentar recuperar o usuário.</response>
-        [HttpGet("get-current-user")]
-        [ProducesResponseType(typeof(BaseResponse<UserApp>), 200)]   // Sucesso
-        [ProducesResponseType(typeof(BaseResponse<string>), 404)]    // Não Encontrado
-        [ProducesResponseType(typeof(BaseResponse<string>), 500)]    // Erro Interno do Servidor
-        public async Task<IActionResult> GetCurrentUser()
-        {
-            try
-            {
-                logger.LogInformation("Tentando recuperar o usuário atual...");
-
-                var response = await authService.GetCurrentUser();
-                if (response != null)
-                {
-                    logger.LogInformation("Usuário atual recuperado com sucesso.");
-                    return CreateResponse(response, nameof(GetCurrentUser), null);
-                }
-                else
-                {
-                    logger.LogWarning("Nenhum usuário autenticado encontrado.");
-                    return HandleNotFound<UserApp>("Nenhum usuário autenticado encontrado.");
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "Ocorreu um erro ao recuperar o usuário atual.");
-                return HandleServerError("Um erro inesperado ocorreu ao recuperar o usuário atual.");
-            }
-        }
-
-
-        /// <summary>
         /// Lista todos os usuários registrados no sistema.
         /// O método é protegido, permitindo acesso apenas a usuários com o papel de "Admin".
         /// Retorna uma lista com os usuários encontrados ou uma mensagem de erro se não houver usuários.

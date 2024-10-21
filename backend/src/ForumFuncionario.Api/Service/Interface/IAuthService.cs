@@ -8,7 +8,6 @@ namespace ForumFuncionario.Api.Service.Interface
     {
         Task AddUserToAdminRole(int userId);
         Task<bool> DeleteUser(int userId);
-        Task<UserApp> GetCurrentUser();
         Task<UserApp> GetUserById(int userId);
         Task<UserResponse> GetUserDto(int userId);
         Task<List<UserApp>> ListUsers();

@@ -24,6 +24,7 @@ namespace ForumFuncionario.Api.Config.Extensions
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IRamalService, RamalService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IEmailService, SmtpEmailService>();
