@@ -7,7 +7,7 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - chat-network
+      - forum-network
 
   mongo-express:
     image: mongo-express:latest
@@ -28,7 +28,7 @@ services:
       ME_CONFIG_SITE_BASEURL: "/" # URL Base
       ME_CONFIG_SITE_SSL_ENABLED: "false" # SSL Desativado
     networks:
-      - chat-network
+      - forum-network
 
   nodejs:
     build: ./server
@@ -38,7 +38,7 @@ services:
     depends_on:
       - mongo
     networks:
-      - chat-network
+      - forum-network
 
   react:
     build:
@@ -48,11 +48,43 @@ services:
     ports:
       - "3000:80"
     networks:
-      - chat-network
+      - forum-network
+
+  dotnet:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dotnet-api
+    ports:
+      - "5011:5011"
+    environment:
+      # Connection Strings
+      ConnectionStrings__DefaultConnection: "connection"
+      ConnectionStrings__EntityConnection: "connection"
+      
+      # Kestrel HTTP URL
+      Kestrel__Endpoints__Http__Url: "http://0.0.0.0:5011"
+      
+      # SMTP Settings
+      SmtpSettings__User: "email"
+      SmtpSettings__Password: "senha"
+      SmtpSettings__Server: "smtp.office365.com"
+      SmtpSettings__Port: "587"
+      SmtpSettings__EnableSsl: "true"
+      
+      # JWT Settings
+      Jwt__Key: "key"
+      Jwt__Issuer: "https://api.forum-funcionario.com"
+      Jwt__Audience: "https://api.forum-funcionario.com"
+      
+      # Allowed Hosts
+      AllowedHosts: "*"
+    networks:
+      - forum-network
 
 volumes:
   mongo-data:
 
 networks:
-  chat-network:
+  forum-network:
     driver: bridge
