@@ -9,7 +9,7 @@ const VideoPg = () => {
       {/* Título principal da página */}
       <Row className="mb-4">
         <Col>
-          <Card className="text-center bg-info text-white">
+          <Card className="text-center bg-info1 ">
             <Card.Body>
               <Card.Title>Treinamento em Vídeo</Card.Title>
               <Card.Text>Assista ao vídeo abaixo para obter mais informações.</Card.Text>

@@ -1,4 +1,5 @@
 import React from "react";
+import "./ChatArea.css"; // Certifique-se de que esse arquivo CSS está importado corretamente
 
 const ChatArea = ({
   messages,
@@ -7,56 +8,41 @@ const ChatArea = ({
   setMessageInput,
   currentChatName,
   currentUserPhoto,
+  currentUser,
 }) => {
   return (
-    <main className="col-md-9 d-flex flex-column" style={{ height: "100%" }}>
+    <main className="chat col-md-9 d-flex1 flex-column" style={{ height: "100%" }}>
       <div className="card shadow-sm flex-grow-1">
-        {" "}
-        {/* Flex-grow para ocupar o espaço restante */}
-        <div className="card-body d-flex flex-column">
-          <h2 className="card-title">
-            <img
-              src={currentUserPhoto}
-              className="user-photo me-2"
-              style={{ width: "30px", height: "30px", borderRadius: "50%" }} // Estilos para a foto do usuário
-            />
-
-            {currentChatName}
-          </h2>
-          <div
-            id="messages"
-            className="border p-3 flex-grow-1"
-            style={{ overflowY: "auto" }}
-          >
-            {messages.map((msg, index) => (
-              <div key={index} className="mb-2 p-2 border rounded">
-                {msg.user && (
-                  <img
-                    src={currentUserPhoto}
-                    className="user-photo me-2"
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      borderRadius: "50%",
-                    }} // Estilos para a foto do usuário
-                  />
-                )}
-                {msg.user}: {msg.message}
+        <div className="chat-header">
+          <img
+            src={currentUserPhoto}
+            className="user-photo me-2"
+            style={{ width: "30px", height: "30px", borderRadius: "50%" }}
+          />
+          <div className="chat-about">
+            <span className="chat-with">{currentChatName}</span>
+            <span className="chat-num-messages">{messages.length} mensagens</span>
+          </div>
+        </div>
+        <div className="chat-history">
+          {messages.map((msg, index) => {
+            const isCurrentUser = msg.user === currentUser;
+            return (
+              <div key={index} className={`message ${isCurrentUser ? "my-message" : "other-message"}`}>
+                <p className="message-text">{msg.message}</p>
+                <span className="message-data-time">{msg.time}</span>
               </div>
-            ))}
-          </div>
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Type a message..."
-              value={messageInput}
-              onChange={(e) => setMessageInput(e.target.value)}
-            />
-            <button className="btn btn-primary" onClick={onSendMessage}>
-              Send
-            </button>
-          </div>
+            );
+          })}
+        </div>
+        <div className="chat-message">
+          <textarea
+            rows="3"
+            placeholder="Type a message..."
+            value={messageInput}
+            onChange={(e) => setMessageInput(e.target.value)}
+          />
+          <button onClick={onSendMessage}>Enviar</button>
         </div>
       </div>
     </main>

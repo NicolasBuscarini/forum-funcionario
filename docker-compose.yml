@@ -59,26 +59,26 @@ services:
       - "5011:5011"
     environment:
       # Connection Strings
-      ConnectionStrings__DefaultConnection: "connection"
-      ConnectionStrings__EntityConnection: "connection"
+      - ConnectionStrings__DefaultConnection=Server=192.168.31.9;Database=PROD;User Id=ronaldo.buscarini;Password=@R7b9rb16@;TrustServerCertificate=True;
+      - ConnectionStrings__EntityConnection=Server=192.168.31.144;Database=INTRANET;User Id=ronaldo.buscarini;Password=@R7b9rb16@;TrustServerCertificate=True;
       
       # Kestrel HTTP URL
-      Kestrel__Endpoints__Http__Url: "http://0.0.0.0:5011"
+      - Kestrel__Endpoints__Http__Url=http://0.0.0.0:5011
       
       # SMTP Settings
-      SmtpSettings__User: "email"
-      SmtpSettings__Password: "senha"
-      SmtpSettings__Server: "smtp.office365.com"
-      SmtpSettings__Port: "587"
-      SmtpSettings__EnableSsl: "true"
+      - SmtpSettings__User=mailer@purifarma.com.br
+      - SmtpSettings__Password=@m6p9mp15@
+      - SmtpSettings__Server=smtp.office365.com
+      - SmtpSettings__Port=587
+      - SmtpSettings__EnableSsl=true
       
       # JWT Settings
-      Jwt__Key: "key"
-      Jwt__Issuer: "https://api.forum-funcionario.com"
-      Jwt__Audience: "https://api.forum-funcionario.com"
+      - Jwt__Key=fedaf7d8863b48e197b9287d492b708e
+      - Jwt__Issuer=https://api.forum-funcionario.com
+      - Jwt__Audience=https://api.forum-funcionario.com
       
       # Allowed Hosts
-      AllowedHosts: "*"
+      - AllowedHosts=*
     networks:
       - forum-network
 

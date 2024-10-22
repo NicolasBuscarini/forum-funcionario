@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Importa os estilos do calendário
-import { Container, Row, Col, ListGroup } from 'react-bootstrap';
-import './BirthdayBoard.css'; // Arquivo de estilo adicional
+import 'react-calendar/dist/Calendar.css';
+import { Card, ListGroup, Row, Col, Alert } from 'react-bootstrap';
 import { apiBaseUrl } from '../../config';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-
-
+import './BirthdayBoard.css'; // Custom CSS
 
 const BirthdayBoard = () => {
   const [birthdays, setBirthdays] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Mock de aniversariantes para exibição de testes com o novo formato
   const mockBirthdays = [
-    { nome: 'João Silva', dia: 5, mes: 9, filial: 'filial 1', descricao: 'CTT1' },
-    { nome: 'Nicolas', dia: 5, mes: 9, filial: 'filial 2', descricao: 'CTT2' },
-    { nome: 'Ronaldo', dia: 5, mes: 9, filial: 'filial 3', descricao: 'CTT3' },
-    { nome: 'Maria Santos', dia: 12, mes: 9, filial: 'filial 1', descricao: 'CTT1' },
-    { nome: 'Carlos Souza', dia: 20, mes: 9, filial: 'filial 2', descricao: 'CTT2' },
-    { nome: 'Ana Pereira', dia: 25, mes: 9, filial: 'filial 3', descricao: 'CTT3' },
+    { nome: 'João Silva', dia: 5, mes: 9, filial: 'Filial 1', descricao: 'CTT1' },
+    { nome: 'Nicolas', dia: 5, mes: 9, filial: 'Filial 2', descricao: 'CTT2' },
+    { nome: 'Ronaldo', dia: 5, mes: 9, filial: 'Filial 3', descricao: 'CTT3' },
+    { nome: 'Maria Santos', dia: 12, mes: 9, filial: 'Filial 1', descricao: 'CTT1' },
+    { nome: 'Carlos Souza', dia: 20, mes: 9, filial: 'Filial 2', descricao: 'CTT2' },
+    { nome: 'Ana Pereira', dia: 25, mes: 9, filial: 'Filial 3', descricao: 'CTT3' },
   ];
 
-  // Função para buscar os aniversariantes do endpoint
   const fetchBirthdays = async () => {
     try {
       const response = await fetch(`http://${apiBaseUrl}:5011/api/Employee/current-month`);
@@ -30,23 +25,19 @@ const BirthdayBoard = () => {
       setBirthdays(jsonResponse.data);
     } catch (error) {
       console.error('Erro ao buscar aniversariantes:', error);
-      // Se der erro no fetch, usamos os dados mockados
       setBirthdays(mockBirthdays);
     }
   };
 
-  // Chama a função fetchBirthdays quando o componente é montado
   useEffect(() => {
     fetchBirthdays();
   }, []);
 
-  // Função para marcar as datas de aniversário no calendário
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const day = date.getDate();
-      const month = date.getMonth() + 1; // Mês começa em 0, por isso o +1
+      const month = date.getMonth() + 1;
       const hasBirthday = birthdays.some(birthday => birthday.dia === day && birthday.mes === month);
-
       if (hasBirthday) {
         return <span role="img" aria-label="birthday">🎂</span>;
       }
@@ -54,65 +45,46 @@ const BirthdayBoard = () => {
     return null;
   };
 
-  // Filtra os aniversariantes para o dia selecionado
   const getBirthdaysForSelectedDate = () => {
-    return birthdays.filter(birthday => {
-      return (
-        birthday.dia === selectedDate.getDate() &&
-        birthday.mes === selectedDate.getMonth() + 1
-      );
-    });
+    return birthdays.filter(birthday => birthday.dia === selectedDate.getDate() && birthday.mes === selectedDate.getMonth() + 1);
   };
 
-  // Calcula o primeiro e o último dia do mês atual
-  const firstDayOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
-  const lastDayOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0);
-
   return (
-    <Container className="birthday-container">
-      <Row>
-        <Col className="d-flex justify-content-center">
-          <h2 className="birthday-title text-center">
-            <i className="bi bi-cake2-fill"></i> {/* Ícone de bolo com margem direita */}
-            Aniversariantes de {selectedDate.toLocaleString('default', { month: 'long' })}
-          </h2>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col className="d-flex justify-content-center">
-          <Calendar
-            onChange={setSelectedDate}
-            value={selectedDate}
-            tileContent={tileContent}  
-            minDate={firstDayOfMonth} // Limita ao primeiro dia do mês
-            maxDate={lastDayOfMonth} // Limita ao último dia do mês
-            prevLabel={null} // Remove o botão de navegação anterior
-            nextLabel={null} // Remove o botão de navegação próximo
-          />
-        </Col>
-      </Row>
-      <Row className="mt-4">
-        <Col className="d-flex justify-content-center">
-          <h2 className="birthday-title text-center">Aniversariantes do dia {selectedDate.toLocaleDateString()}</h2>
-        </Col>
-      </Row>
-      <Row className="d-flex justify-content-center">
-        <Col>
-          <ListGroup>
-            {getBirthdaysForSelectedDate().length > 0 ? (
-              getBirthdaysForSelectedDate().map((birthday, index) => (
-                <ListGroup.Item key={index} className="text-center">
-                  <strong>{birthday.nome}</strong> - Depto: {birthday.descricao} - Filial: {birthday.filial}
-                </ListGroup.Item>
-              ))
-            ) : (
-              <ListGroup.Item className="text-center">Nenhum aniversariante neste dia.</ListGroup.Item>
-            )}
-          </ListGroup>
-        </Col>
-      </Row>
-    </Container>
+    <Card className="mb-4 shadow-lg same-height-card">
+      <Card.Header className="bg-primary text-white">
+        <Row>
+          <Col><h5>Aniversariantes</h5></Col>
+        </Row>
+      </Card.Header>
+      <Card.Body>
+        <Row>
+          <Col md={6} className="calendar-column">
+            <Calendar
+              onChange={setSelectedDate}
+              value={selectedDate}
+              tileContent={tileContent}
+            />
+          </Col>
+          <Col md={6} className="birthday-list-column">
+            <h6>Aniversariantes do dia {selectedDate.toLocaleDateString()}:</h6>
+            <ListGroup className="mt-3 birthday-list">
+              {getBirthdaysForSelectedDate().length > 0 ? (
+                getBirthdaysForSelectedDate().map((birthday, index) => (
+                  <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong>{birthday.nome}</strong> - {birthday.descricao}
+                    </div>
+                    <small className="text-muted">{birthday.filial}</small>
+                  </ListGroup.Item>
+                ))
+              ) : (
+                <Alert variant="info" className="mt-3">Nenhum aniversariante neste dia.</Alert>
+              )}
+            </ListGroup>
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
   );
 };
 

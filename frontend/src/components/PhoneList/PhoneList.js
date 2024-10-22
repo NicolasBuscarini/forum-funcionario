@@ -1,65 +1,53 @@
-// PhoneList.js
-import React, { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
-import './PhoneList.css'
+import React from "react";
+import { Card, ListGroup } from "react-bootstrap";
+import './PhoneList.css'; // Custom CSS
 
 const PhoneList = () => {
-  const { authData, logout } = useContext(AuthContext);
-  const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const extensions = [
+    { name: "João Silva", extension: "101", department: "Suporte", location: "Filial 1" },
+    { name: "Ana Pereira", extension: "108", department: "Desenvolvimento", location: "Filial 1" },
+    { name: "Paulo Martins", extension: "107", department: "Operações", location: "Filial 1" },
+    { name: "Pedro Soares", extension: "110", department: "Administração", location: "Filial 1" },
+    { name: "Maria Souza", extension: "102", department: "Financeiro", location: "Filial 2" },
+    { name: "Ricardo Oliveira", extension: "105", department: "TI", location: "Filial 2" },
+    { name: "Fernanda Lima", extension: "112", department: "Logística", location: "Filial 2" },
+    { name: "Carlos Pereira", extension: "103", department: "Recursos Humanos", location: "Filial 3" },
+    { name: "Sandra Gomes", extension: "106", department: "Vendas", location: "Filial 3" },
+    { name: "Rodrigo Medeiros", extension: "113", department: "Compras", location: "Filial 3" },
+  ];
 
-  useEffect(() => {
-    // Simulação de dados de ramais
-    const exampleContacts = [
-      { id: 1, name: "João Silva", phone: "1234-5678" },
-      { id: 2, name: "Maria Oliveira", phone: "2345-6789" },
-      { id: 3, name: "Pedro Santos", phone: "3456-7890" },
-      { id: 4, name: "Ana Costa", phone: "4567-8901" },
-      { id: 5, name: "Lucas Almeida", phone: "5678-9012" },
-    ];
-
-    // Simulando uma requisição
-    const fetchContacts = () => {
-      try {
-        if (!authData || !authData.token) {
-          throw new Error("Você precisa estar autenticado para ver a lista de ramais.");
-        }
-        
-        // Aqui você definiria a lógica de "carregar" os ramais
-        setContacts(exampleContacts);
-      } catch (err) {
-        if (err.response && err.response.status === 401) {
-          logout(); // Log out if unauthorized
-        }
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchContacts();
-  }, [authData, logout]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p className="text-danger">Error: {error}</p>;
+  const groupedByLocation = extensions.reduce((acc, person) => {
+    const { location } = person;
+    if (!acc[location]) {
+      acc[location] = [];
+    }
+    acc[location].push(person);
+    return acc;
+  }, {});
 
   return (
-    <div className="card mt-3">
-      <div className="phonelist-gallery">
-      <h2 className="phonelist-gallery-title text-center">
-      <i className="bi bi-telephone"></i> {/* Ícone de bolo com margem direita */}
-      Lista de Ramais
-      </h2>
-      </div>
-      <ul className="list-group list-group-flush">
-        {contacts.map((contact) => (
-          <li key={contact.id} className="list-group-item">
-            {contact.name}: {contact.phone}
-          </li>
+    <Card className="mb-4 shadow-lg same-height-card">
+      <Card.Header className="bg-primary text-white">
+        <h5>Lista de Ramais</h5>
+      </Card.Header>
+      <Card.Body className="phone-list-body">
+        {Object.keys(groupedByLocation).map((location, index) => (
+          <div key={index} className="mb-3">
+            <h6>{location}</h6>
+            <ListGroup variant="flush" className="phone-list">
+              {groupedByLocation[location].map((person, idx) => (
+                <ListGroup.Item key={idx} className="d-flex justify-content-between align-items-center">
+                  <div>
+                    <strong>{person.name}</strong> - {person.department}
+                  </div>
+                  <span className="badge bg-secondary">{person.extension}</span>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </div>
         ))}
-      </ul>
-    </div>
+      </Card.Body>
+    </Card>
   );
 };
 
