@@ -20,12 +20,13 @@ namespace ForumFuncionario.Api.Config.Extensions
             services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<IRamalRepository, RamalRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IChatRepository, ChatRepository>();
 
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IRamalService, RamalService>();
             services.AddScoped<IUserService, UserService>();
-
+            services.AddScoped<IChatService, ChatService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IEmailService, SmtpEmailService>();
 
