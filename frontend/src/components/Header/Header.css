@@ -1,0 +1,65 @@
+/* Header.css */
+
+
+.header-container {
+
+  background-color: #eefaff;
+
+    padding: 20px;
+    display: flex;
+    align-items: center; /* Alinha o logo e o texto verticalmente */
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .header-logo {
+    width: 250px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin-right: 40px; /* Espaçamento entre o logo e o texto */
+   
+
+  }
+
+  .header-logo1 {
+    width: 100px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin-left: 140px;
+    margin-right: 40px; /* Espaçamento entre o logo e o texto */
+  }
+
+  .header-logo2 {
+    width: 100px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin-right: 40px; /* Espaçamento entre o logo e o texto */
+  }
+  
+  .header-text {
+    text-align: left;
+  }
+  
+  .header-title {
+    font-size: 50px; /* Aumentei o tamanho da fonte */
+    color: #000000; /* Usei um tom de vermelho mais elegante (Vermelho Escuro) */
+    font-family: 'Avantgarde' , sans-serif; /* Substituí pela fonte 'Georgia' para um estilo mais sofisticado */
+    font-weight: 600; /* Mantenha um peso menor que bold, mas ainda com destaque */
+
+    
+    
+}
+
+  
+  .header-subtitle {
+    font-size: 45px; /* Subtítulo um pouco menor */
+    color: #000000; /* Um tom de vermelho mais claro para contraste */
+    font-family:  'Arial', sans-serif;
+
+    margin: 5px 0 0;
+  }
+
+  .header-text {
+    font-size: 45px; /* Subtítulo um pouco menor */
+    color: #000000; /* Um tom de vermelho mais claro para contraste */
+    font-family:  'Arial', sans-serif;
+
+    margin: 5px 0 0;
+  }
+  

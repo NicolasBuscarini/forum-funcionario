@@ -1,0 +1,21 @@
+/* NavBar.css */
+.navbar-toggler-icon {
+  color: white; /* Certifique-se de que a cor seja visível em fundo escuro */
+}
+
+.fa-bars {
+  font-size: 1.5rem; /* Aumenta o tamanho do ícone para maior visibilidade */
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5); /* Ajusta o fundo ao exibir o modal */
+}
+
+.modal-content {
+  background-color: white; /* Torna o conteúdo visível */
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 30px;
+  padding-left: var(--bs-navbar-nav-link-padding-x);
+}

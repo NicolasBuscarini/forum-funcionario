@@ -1,0 +1,49 @@
+/* src/components/Posts/Posts.css */
+.posts-container {
+    padding: 20px;
+    background-color: #d8d8d8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  
+
+  .posts-title {
+    font-size: 24px;
+    color: #717171;
+    margin-bottom: 20px;
+  }
+  
+  .post-item {
+    background-color: #fafdff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Mantém a sombra */
+    /* Border removed */
+  }
+  
+  .post-category {
+    font-size: 18px;
+    font-weight: bold;
+    color: #005cb8;
+  }
+  
+  .post-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .post-content {
+    font-size: 16px;
+    color: #666;
+    white-space: pre-wrap; /* Mantém as quebras de linha e espaços */
+  }
+  
+  .post-meta {
+    font-size: 12px;
+    color: #999;
+  }
+  

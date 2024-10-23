@@ -1,0 +1,15 @@
+.phone-list-card {
+    height: 400px; /* Define a altura do componente igual ao BirthdayBoard */
+  }
+  
+  .phone-list-body {
+    max-height: 320px; /* Ajuste o espaço para o conteúdo */
+    overflow-y: auto; /* Cria a barra de rolagem */
+  }
+  
+  .phone-list-body h6 {
+    margin-top: 0;
+    font-weight: bold;
+  }
+
+  
