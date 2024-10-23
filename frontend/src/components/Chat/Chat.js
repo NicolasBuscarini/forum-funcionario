@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Chat.css"; // Importando os estilos
-import Sidebar from "../../components/Chat/Sidebar/Sidebar";
-import ChatArea from "../../components/Chat/ChatArea/ChatArea";
+import Sidebar from "./Sidebar/Sidebar";
+import ChatArea from "./ChatArea/ChatArea";
 
 const socket = io("http://localhost:3003"); // Conectar ao servidor Socket.IO na porta 3003
 
 const Chat = () => {
-  const { authData, logout } = useContext(AuthContext);
   const [user, setUser] = useState("");
   const [currentChatId, setCurrentChatId] = useState(
     "256d22b9-41fc-4b0d-ae0c-ce6dd624a40e"
@@ -32,11 +30,6 @@ const Chat = () => {
     { chatId: "chat-13", name: "Nicolas" },
     { chatId: "chat-14", name: "Olga" },
     { chatId: "chat-15", name: "Paulo" },
-    { chatId: "chat-16", name: "Paulo" },
-    { chatId: "chat-17", name: "Paulo" },
-    { chatId: "chat-18", name: "Paulo" },
-    { chatId: "chat-19", name: "Paulo" },
-    { chatId: "chat-20", name: "Paulo" },
   ]);
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
@@ -62,15 +55,11 @@ const Chat = () => {
     "chat-13": { userId: "14", photo: "url_da_foto_14" },
     "chat-14": { userId: "15", photo: "url_da_foto_15" },
     "chat-15": { userId: "16", photo: "url_da_foto_16" },
-    "chat-15": { userId: "17", photo: "url_da_foto_16" },
-    "chat-15": { userId: "18", photo: "url_da_foto_16" },
-    "chat-15": { userId: "19", photo: "url_da_foto_16" },
-    "chat-15": { userId: "20", photo: "url_da_foto_16" },
   };
 
   // Solicitar o nome do usuário
   useEffect(() => {
-    setUser(authData?.username);
+    setUser(prompt("Enter your name:"));
     socket.emit("joinChat", currentChatId); // Entrar no chat "Todos"
   }, [currentChatId]);
 
@@ -118,31 +107,26 @@ const Chat = () => {
   // Obter a foto do usuário atual
   const currentUserPhoto = users[currentChatId]?.photo;
 
-return (
-  <div className="container-fluid">
-    <div className="row" style={{ height: '100vh' }}> {/* Altura total da página */}
-      <div className="col-auto sidebar">
+  return (
+    <div className="container-fluid">
+      <div className="row" style={{ height: "100vh" }}>
         <Sidebar
           chats={userChats}
           users={users}
           onChatSelect={joinChat}
           onReorderChats={handleReorderChats}
         />
-      </div>
-      <div className="col chat-area"> {/* Aqui o ChatArea ocupa o restante do espaço */}
         <ChatArea
           messages={messages}
           onSendMessage={sendMessage}
           messageInput={messageInput}
           setMessageInput={setMessageInput}
           currentChatName={currentChatName}
-          currentUserPhoto={currentUserPhoto}
-          currentUser={authData?.username}
+          currentUserPhoto={currentUserPhoto} 
         />
       </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Chat;

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import BirthdayBoard from "../../components/BirthdayBoard/BirthdayBoard"; 
 import PhoneList from "../../components/PhoneList/PhoneList";
-import Chat from "../../pages/Chat/Chat";
+import Chat from "../Chat/ChatPage";
 import { AuthContext } from "../../context/AuthContext";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import { apiBaseUrl } from "../../config";

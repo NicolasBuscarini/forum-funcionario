@@ -14,9 +14,9 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Qualidade from "./pages/Qualidade/Qualidade.js";
 import Autenticacao from "./pages/Autenticacao/Autenticacao.js";
 import Postar from "./pages/Postar/Postar.js";
-import Chat from "./pages/Chat/Chat.js";
 import ResetPassword from "./pages/ResetPassword/ResetPassword.js";
 import Layout from "./Layout.js";
+import ChatPage from "./pages/Chat/ChatPage.js";
 
 const App = () => {
   return (
@@ -88,7 +88,7 @@ const App = () => {
               path="/chat"
               element={
                 <ProtectedRoute>
-                  <Chat />
+                  <ChatPage />
                 </ProtectedRoute>
               }
             />
