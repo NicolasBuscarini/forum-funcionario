@@ -29,13 +29,13 @@ const Header = () => {
     <>
       <header className="header-container d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
-          <img src="/puribmp.png" alt="Logo Purifarma" className="header-logo" />
+          <img src="/puribmp_transparente.png" alt="Logo Purifarma" className="header-logo" />
           <div className="header-text ms-3">
             <h1 className="header-title">
-              INTRANET CORPORATIVO - Portal do Colaborador
+              Portal do Colaborador
             </h1>
-            <h2 className="header-subtitle">Sua conexão com a Empresa</h2>
-            <h3>Bem vindo, {formatName(authData?.username)} !</h3> 
+
+            <h3>{formatName(authData?.username)} !</h3> 
           </div>
         </div>
 
@@ -49,7 +49,7 @@ const Header = () => {
         </div>
 
         {/* Botão de Logout */}
-        <Button variant="btn btn-outline-danger" onClick={handleLogout}>
+        <Button variant="btn btn-danger" onClick={handleLogout}>
           <FontAwesomeIcon icon={faDoorOpen} className="me-2" />Sair
         </Button>
       </header>

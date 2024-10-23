@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Qualidade from "./pages/Qualidade/Qualidade.js";
 import Autenticacao from "./pages/Autenticacao/Autenticacao.js";
 import Postar from "./pages/Postar/Postar.js";
+import Chat from "./pages/Chat/Chat.js";
 import ResetPassword from "./pages/ResetPassword/ResetPassword.js";
 import Layout from "./Layout.js";
 
@@ -80,6 +81,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <Postar />
+                </ProtectedRoute>
+              }
+            />
+             <Route
+              path="/chat"
+              element={
+                <ProtectedRoute>
+                  <Chat />
                 </ProtectedRoute>
               }
             />

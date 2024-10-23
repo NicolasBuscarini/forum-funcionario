@@ -20,32 +20,6 @@
   /* Estilo para a coluna de Chat */
 }
 
-.birthday-container {
-  padding: 20px;
-  background-color: #ffd957;
-  color: #8a6b00;
-  font-size: 15px;
-  text-align: left;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.birthday-title {
-  margin-bottom: 10px;
-  color: #B06A00;
-  font-size: 25px;
-}
-
-.birthday-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.birthday-item {
-  padding: 8px 0;
-  border-bottom: 1px solid #FFA500;
-}
-
 
 .alert.alert-secondary {
   background-color: #f0f0f0;
@@ -118,4 +92,23 @@
   color: #006edc; /* Cor do texto do subtítulo */
   margin-top: 0.5rem; /* Espaçamento acima do texto */
   
+}
+
+.text-info1{
+  color: #0d6efd; /* Cor do texto do subtítulo */
+}
+.category-title {
+  color: #006edc; /* Altere para a cor desejada */
+  font-weight: bold; /* Altere para o peso desejado */
+}
+
+/* BirthdayBoard.css and PhoneList.css */
+.same-height-card {
+  height: 450px; /* Ajuste para o tamanho desejado */
+  overflow-y: auto;
+}
+
+.phone-list-body {
+  height: 450px; /* Defina altura específica para conteúdo com rolagem */
+  overflow-y: auto;
 }

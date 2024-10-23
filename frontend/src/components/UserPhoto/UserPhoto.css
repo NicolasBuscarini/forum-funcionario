@@ -9,7 +9,7 @@
     height: 120px; /* Ajuste a altura conforme necessário */
     border-radius: 50%; /* Para fazer a foto em forma de círculo */
     object-fit: cover; /* Para garantir que a imagem cubra o espaço sem distorção */
-    border: 3px solid #ff0000; /* Borda azul ao redor da foto */
+    border: 3px solid #000000; /* Borda azul ao redor da foto */
     margin-right: 150px; /* Espaçamento à direita da foto */
     box-shadow: 0.2em 0.2em 0.4em rgba(0, 0, 0, 0.500);
   }
