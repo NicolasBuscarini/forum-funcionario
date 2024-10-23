@@ -48,7 +48,7 @@ namespace ForumFuncionario.Api.Service
         {
             var currentUser = await userService.GetCurrentUser();
             // Busca todos os chats em que o usuário logado está incluído
-            var userChats = await chatRepository.GetChatsByUserIdAsync(currentUser.Id);
+            var userChats = await chatRepository.GetChatsByUserIdAsync(currentUser.UserName);
 
             foreach (var chat in userChats)
             {
